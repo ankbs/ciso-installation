@@ -948,6 +948,23 @@ def setup():
     # 8. Setup TPRM (Third-Party Risk Management)
     setup_tprm(root_folder, perimeter)
 
+    # Enable vulnerability feeds (KEV, EPSS, NVD enrich)
+    try:
+        from global_settings.models import GlobalSettings
+        feed_setting = GlobalSettings.objects.filter(name='sec-intel-feeds').first()
+        if feed_setting:
+            val = feed_setting.value
+            val['kev_feed_enabled'] = True
+            val['epss_feed_enabled'] = True
+            val['nvd_enrich_enabled'] = True
+            feed_setting.value = val
+            feed_setting.save()
+            print("[+] Vulnerability feeds (KEV, EPSS, NVD enrichment) have been enabled successfully.")
+        else:
+            print("[WARNING] 'sec-intel-feeds' setting not found in global settings.")
+    except Exception as e:
+        print(f"[WARNING] Failed to enable vulnerability feeds: {e}")
+
     # 9. Write output to json file
     output_data = {
         "api_url": "https://localhost:8443",
