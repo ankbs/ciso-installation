@@ -74,7 +74,12 @@ while (-not $dockerRunning -and $attempts -lt 12) {
 
 if ($dockerRunning) {
     Write-Host "  [+] Docker Daemon läuft erfolgreich!" -ForegroundColor Green
-    Write-Host "[+] WSL2 & Docker-Setup abgeschlossen! Du kannst nun das Repository klonen und 'docker compose up -d' ausführen." -ForegroundColor Green
+    Write-Host "[*] WSL2 & Docker-Infrastruktur steht bereit. Starte nun die CISO Assistant GRC-Instanz..." -ForegroundColor Cyan
+    if (Test-Path "$PSScriptRoot\Deploy-Local.ps1") {
+        & "$PSScriptRoot\Deploy-Local.ps1"
+    } else {
+        Write-Warning "Deploy-Local.ps1 konnte nicht im Verzeichnis gefunden werden."
+    }
 } else {
     Write-Warning "[-] Docker Daemon konnte nicht gestartet werden. Bitte starte Docker Desktop manuell."
 }
