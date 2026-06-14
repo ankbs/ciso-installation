@@ -162,10 +162,10 @@ def main():
             print(f"[ERROR] Failed to create stack: {e}")
             sys.exit(1)
         
-    # Define fallback configurations (Shapes)
+    # Define fallback configurations (Shapes - Minimum 4 GB RAM required)
     shapes_to_try = [
-        {"shape": "VM.Standard.A1.Flex", "ocpus": 2, "memory": 8},
-        {"shape": "VM.Standard.E2.1.Micro", "ocpus": 1, "memory": 1}
+        {"shape": "VM.Standard.A1.Flex", "ocpus": 2, "memory": 8}, # Always Free ARM
+        {"shape": "VM.Standard.E4.Flex", "ocpus": 1, "memory": 4}  # Standard AMD Flex (Paid)
     ]
     
     # Define fallback Availability Domains (Location indices: 0 = AD-1, 1 = AD-2, 2 = AD-3)

@@ -21,8 +21,8 @@ variable "ssh_public_key" {
 
 variable "instance_shape" {
   type        = string
-  description = "The compute instance shape (Default: AMD micro shape)."
-  default     = "VM.Standard.E2.1.Micro"
+  description = "The compute instance shape (Default: Ampere A1 Always Free Shape)."
+  default     = "VM.Standard.A1.Flex"
 }
 
 variable "instance_ocpus" {
