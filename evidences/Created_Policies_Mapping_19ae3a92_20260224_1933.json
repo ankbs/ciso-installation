@@ -1,0 +1,170 @@
+﻿[
+    {
+        "RoleName":  "Application Administrator",
+        "PolicyId":  "323a5a07-56c6-4b03-bc66-fd50be41b930",
+        "PolicyName":  "Governance GDAP Application Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Attribute Assignment Administrator",
+        "PolicyId":  "5a7e37f0-6d81-40da-875c-83597f733ab1",
+        "PolicyName":  "Governance GDAP Attribute Assignment Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Authentication Administrator",
+        "PolicyId":  "65ab4d20-05fb-477b-ac8d-09d7da674cee",
+        "PolicyName":  "Governance GDAP Authentication Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Azure Information Protection Administrator",
+        "PolicyId":  "7bdcc6cd-b381-4915-ace2-159919707d70",
+        "PolicyName":  "Governance GDAP Azure Information Protection Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Billing Administrator",
+        "PolicyId":  "6f855cae-22c0-4b82-8f33-196725bb8b55",
+        "PolicyName":  "Governance GDAP Billing Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Cloud Application Administrator",
+        "PolicyId":  "d1170356-692d-4365-aaf2-78fd76c0e350",
+        "PolicyName":  "Governance GDAP Cloud Application Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Cloud Device Administrator",
+        "PolicyId":  "b5041f23-9e35-407d-8709-1ee3ea8cfed6",
+        "PolicyName":  "Governance GDAP Cloud Device Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Compliance Administrator",
+        "PolicyId":  "f1f6c9da-6c16-4652-ba5d-fc7ef78a727a",
+        "PolicyName":  "Governance GDAP Compliance Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Conditional Access Administrator",
+        "PolicyId":  "ec4f779e-6001-4f1a-9530-3dd7f2b52048",
+        "PolicyName":  "Governance GDAP Conditional Access Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Directory Readers",
+        "PolicyId":  "9afa1ed0-1b3d-4727-a8ac-cda4e0ef121b",
+        "PolicyName":  "Governance GDAP Directory Readers (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Exchange Administrator",
+        "PolicyId":  "b29bb045-9673-408f-8a49-0cc49520b77c",
+        "PolicyName":  "Governance GDAP Exchange Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Helpdesk Administrator",
+        "PolicyId":  "9ea63165-5844-406e-ae81-f0e34187734f",
+        "PolicyName":  "Governance GDAP Helpdesk Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Intune Administrator",
+        "PolicyId":  "0dfa616d-1dc5-497e-88d8-5e9b24ac68e0",
+        "PolicyName":  "Governance GDAP Intune Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Message Center Privacy Reader",
+        "PolicyId":  "48ac285e-e1f8-4423-9dd9-31b171113c49",
+        "PolicyName":  "Governance GDAP Message Center Privacy Reader (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Message Center Reader",
+        "PolicyId":  "21c5584f-13e6-4dae-bd47-b9b910cfb8a0",
+        "PolicyName":  "Governance GDAP Message Center Reader (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Office Apps Administrator",
+        "PolicyId":  "d38e8f45-f4d7-43c8-9e7c-e2ec6aa99a71",
+        "PolicyName":  "Governance GDAP Office Apps Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Privileged Authentication Administrator",
+        "PolicyId":  "21e1dd6a-f164-4004-bb58-101c49669c13",
+        "PolicyName":  "Governance GDAP Privileged Authentication Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Privileged Role Administrator",
+        "PolicyId":  "55d6d465-6888-4652-a955-e3192fa179ed",
+        "PolicyName":  "Governance GDAP Privileged Role Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Reports Reader",
+        "PolicyId":  "d73c0b17-86a8-4ac6-87fb-f044fade9db8",
+        "PolicyName":  "Governance GDAP Reports Reader (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Security Administrator",
+        "PolicyId":  "78a19825-c1cd-400d-87e0-72fd5c247cac",
+        "PolicyName":  "Governance GDAP Security Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Security Reader",
+        "PolicyId":  "9d38d1c3-1866-4399-8bfd-ab55f1efda8b",
+        "PolicyName":  "Governance GDAP Security Reader (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Service Support Administrator",
+        "PolicyId":  "5ed644a2-6865-4b25-b732-09c74945f36b",
+        "PolicyName":  "Governance GDAP Service Support Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "SharePoint Administrator",
+        "PolicyId":  "68810d31-4bcf-4ee2-a998-e814af3a7642",
+        "PolicyName":  "Governance GDAP SharePoint Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Skype for Business Administrator",
+        "PolicyId":  "c2e45b8d-2ebe-4d23-a6f3-539371504e05",
+        "PolicyName":  "Governance GDAP Skype for Business Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Teams Administrator",
+        "PolicyId":  "c40626cf-533b-4c97-a46c-5e5c92206186",
+        "PolicyName":  "Governance GDAP Teams Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Teams Communications Administrator",
+        "PolicyId":  "c9567a4a-57f0-4354-8724-edb1fb5d3b8d",
+        "PolicyName":  "Governance GDAP Teams Communications Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "User Administrator",
+        "PolicyId":  "24bc6683-1164-4d43-9d6b-2e935fc2524d",
+        "PolicyName":  "Governance GDAP User Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    },
+    {
+        "RoleName":  "Windows 365 Administrator",
+        "PolicyId":  "2febc363-7554-4672-ba6e-5f61cccb09a5",
+        "PolicyName":  "Governance GDAP Windows 365 Administrator (19ae3a92)",
+        "TargetID":  "19ae3a92-10de-428e-87f5-f15e54d699bd"
+    }
+]

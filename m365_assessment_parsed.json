@@ -1,0 +1,4220 @@
+{
+    "summary": {
+        "total_checks": 76,
+        "total_mapped_controls": 76,
+        "frameworks": [
+            "CisE3L1",
+            "CisE3L2",
+            "CisE5L1",
+            "CisE5L2",
+            "Nist80053Low",
+            "Nist80053Moderate",
+            "Nist80053High",
+            "Nist80053Privacy",
+            "NistCsf",
+            "Iso27001",
+            "Stig",
+            "PciDss",
+            "Cmmc",
+            "Hipaa",
+            "CisaScuba",
+            "Soc2"
+        ]
+    },
+    "controls": [
+        {
+            "check_id": "CA-DEVICE-002.1",
+            "name": "Managed Device for Security Info Registration",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.2.10"
+                ],
+                "CisE5L1": [
+                    "5.2.2.10"
+                ],
+                "Nist80053Low": [
+                    "AC-20b",
+                    "IA-3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-20b",
+                    "IA-3"
+                ],
+                "Nist80053High": [
+                    "AC-20b",
+                    "IA-3"
+                ],
+                "NistCsf": [
+                    "PR.AA-03",
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.1",
+                    "A.8.5"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.18",
+                    "3.1.19",
+                    "3.5.1"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.310(b)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.3.7v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-DEVICECODE-001.1",
+            "name": "Device Code Flow Blocked",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.2.12"
+                ],
+                "CisE5L1": [
+                    "5.2.2.12"
+                ],
+                "Nist80053Low": [
+                    "CM-7"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7"
+                ],
+                "Nist80053High": [
+                    "CM-7"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.20"
+                ],
+                "PciDss": [
+                    "2.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-LEGACYAUTH-001.1",
+            "name": "Legacy Authentication Blocked",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.2.3"
+                ],
+                "CisE5L1": [
+                    "5.2.2.3"
+                ],
+                "Nist80053Low": [
+                    "CM-7"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7"
+                ],
+                "Nist80053High": [
+                    "CM-7"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.20"
+                ],
+                "Stig": [
+                    "V-260338"
+                ],
+                "PciDss": [
+                    "2.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.312(a)(1)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.1.1v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-MFA-ADMIN-001.1",
+            "name": "MFA Required for Admin Roles",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.2.1"
+                ],
+                "CisE5L1": [
+                    "5.2.2.1"
+                ],
+                "Nist80053Low": [
+                    "IA-2(1)",
+                    "IA-2(2)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-2(1)",
+                    "IA-2(2)"
+                ],
+                "Nist80053High": [
+                    "IA-2(1)",
+                    "IA-2(2)"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5"
+                ],
+                "Stig": [
+                    "V-260337"
+                ],
+                "PciDss": [
+                    "8.4.1",
+                    "8.4.2"
+                ],
+                "Cmmc": [
+                    "3.5.3"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.3.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-PHISHRES-001.1",
+            "name": "Phishing-Resistant MFA for Admins",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L2": [
+                    "5.2.2.5"
+                ],
+                "CisE5L2": [
+                    "5.2.2.5"
+                ],
+                "Nist80053Low": [
+                    "IA-2(1)",
+                    "IA-5c",
+                    "IA-5g",
+                    "IA-2(8)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-2(1)",
+                    "IA-5c",
+                    "IA-5g",
+                    "IA-2(8)"
+                ],
+                "Nist80053High": [
+                    "IA-2(1)",
+                    "IA-5c",
+                    "IA-5g",
+                    "IA-2(8)"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5"
+                ],
+                "Stig": [
+                    "V-260339"
+                ],
+                "PciDss": [
+                    "8.4.1",
+                    "8.4.2"
+                ],
+                "Cmmc": [
+                    "3.5.3"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.3.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-SIGNINRISK-001.1",
+            "name": "Sign-in Risk Policy Configured",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE5L1": [
+                    "5.2.2.7"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2(12)",
+                    "AC-2(13)"
+                ],
+                "Nist80053High": [
+                    "AC-2(12)",
+                    "AC-2(13)"
+                ],
+                "NistCsf": [
+                    "DE.CM-01",
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.16"
+                ],
+                "Stig": [
+                    "V-260340"
+                ],
+                "PciDss": [
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.308(a)(1)(ii)(A)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.2.3v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-SIGNINRISK-002.1",
+            "name": "Sign-in Risk Blocks Medium+High",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE5L2": [
+                    "5.2.2.8"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2(12)",
+                    "AC-2(13)"
+                ],
+                "Nist80053High": [
+                    "AC-2(12)",
+                    "AC-2(13)"
+                ],
+                "NistCsf": [
+                    "DE.CM-01",
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.16"
+                ],
+                "Stig": [
+                    "V-260340"
+                ],
+                "PciDss": [
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.308(a)(1)(ii)(A)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.2.3v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "CA-USERRISK-001.1",
+            "name": "User Risk Policy Configured",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE5L1": [
+                    "5.2.2.6"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2(12)",
+                    "AC-2(13)"
+                ],
+                "Nist80053High": [
+                    "AC-2(12)",
+                    "AC-2(13)"
+                ],
+                "NistCsf": [
+                    "DE.CM-01",
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.16"
+                ],
+                "Stig": [
+                    "V-260341"
+                ],
+                "PciDss": [
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.308(a)(1)(ii)(A)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.2.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "COMPLIANCE-AUDIT-001.1",
+            "name": "Unified Audit Log Ingestion",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "3.1.1"
+                ],
+                "CisE5L1": [
+                    "3.1.1"
+                ],
+                "Nist80053Low": [
+                    "AU-12"
+                ],
+                "Nist80053Moderate": [
+                    "AU-12"
+                ],
+                "Nist80053High": [
+                    "AU-12"
+                ],
+                "NistCsf": [
+                    "DE.AE-03"
+                ],
+                "Iso27001": [
+                    "A.8.15"
+                ],
+                "PciDss": [
+                    "10.2.x",
+                    "10.3.x"
+                ],
+                "Cmmc": [
+                    "3.3.1",
+                    "3.3.2"
+                ],
+                "Hipaa": [
+                    "§164.312(b)"
+                ],
+                "CisaScuba": [
+                    "MS.EXO.16.1v1"
+                ],
+                "Soc2": [
+                    "CC7.1",
+                    "CC7.2"
+                ]
+            }
+        },
+        {
+            "check_id": "COMPLIANCE-DLP-001.1",
+            "name": "DLP Policies",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "3.2.1"
+                ],
+                "CisE5L1": [
+                    "3.2.1"
+                ],
+                "NistCsf": [
+                    "PR.DS-01",
+                    "PR.DS-02"
+                ],
+                "Iso27001": [
+                    "A.5.12",
+                    "A.8.12"
+                ],
+                "PciDss": [
+                    "3.4.x",
+                    "3.5.x"
+                ],
+                "Cmmc": [
+                    "3.1.22",
+                    "3.13.1"
+                ],
+                "Hipaa": [
+                    "§164.312(c)(1)",
+                    "§164.312(e)(1)"
+                ],
+                "CisaScuba": [
+                    "MS.EXO.8.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.7"
+                ]
+            }
+        },
+        {
+            "check_id": "COMPLIANCE-LABELS-001.1",
+            "name": "Sensitivity Label Policies",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "3.3.1"
+                ],
+                "CisE5L1": [
+                    "3.3.1"
+                ],
+                "Nist80053Low": [
+                    "AC-3",
+                    "SC-7(10)"
+                ],
+                "Nist80053Moderate": [
+                    "AC-3",
+                    "SC-7(10)"
+                ],
+                "Nist80053High": [
+                    "AC-3",
+                    "SC-7(10)"
+                ],
+                "NistCsf": [
+                    "PR.DS-01"
+                ],
+                "Iso27001": [
+                    "A.5.12",
+                    "A.5.13",
+                    "A.8.12"
+                ],
+                "PciDss": [
+                    "3.4.x",
+                    "3.5.x"
+                ],
+                "Cmmc": [
+                    "3.1.22",
+                    "3.13.1"
+                ],
+                "Hipaa": [
+                    "§164.312(c)(1)"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3",
+                    "CC6.7"
+                ]
+            }
+        },
+        {
+            "check_id": "DEFENDER-PRIORITY-001.1",
+            "name": "Preset Security Policies Configured",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "2.4.1"
+                ],
+                "Nist80053Low": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053Moderate": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053High": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "NistCsf": [
+                    "PR.AA-05",
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.7",
+                    "A.8.23"
+                ],
+                "PciDss": [
+                    "5.2.x",
+                    "5.3.x",
+                    "5.4.x"
+                ],
+                "Cmmc": [
+                    "3.14.2",
+                    "3.14.5",
+                    "3.4.2"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.8",
+                    "CC7.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "DEFENDER-PRIORITY-002.1",
+            "name": "Strict Preset Covers Priority Users",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "2.4.2"
+                ],
+                "Nist80053Low": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053Moderate": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053High": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "NistCsf": [
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.7",
+                    "A.8.23"
+                ],
+                "PciDss": [
+                    "5.2.x",
+                    "5.3.x",
+                    "5.4.x"
+                ],
+                "Cmmc": [
+                    "3.14.2",
+                    "3.14.5",
+                    "3.4.2"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.8",
+                    "CC7.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "DEFENDER-SAFEATTACH-001.1",
+            "name": "Safe Attachments Availability",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE5L2": [
+                    "2.1.4"
+                ],
+                "Nist80053Low": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053Moderate": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053High": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "NistCsf": [
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.7",
+                    "A.8.23"
+                ],
+                "PciDss": [
+                    "5.2.x",
+                    "5.3.x"
+                ],
+                "Cmmc": [
+                    "3.14.2",
+                    "3.14.5"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "CisaScuba": [
+                    "MS.EXO.14.1v2"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.8",
+                    "CC7.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "DEFENDER-SAFEATTACH-002.1",
+            "name": "Safe Attachments for SPO/OneDrive/Teams",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE5L2": [
+                    "2.1.5"
+                ],
+                "Nist80053Low": [
+                    "SI-3a"
+                ],
+                "Nist80053Moderate": [
+                    "SI-3a"
+                ],
+                "Nist80053High": [
+                    "SI-3a"
+                ],
+                "NistCsf": [
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.7"
+                ],
+                "PciDss": [
+                    "5.2.x",
+                    "5.3.x"
+                ],
+                "Cmmc": [
+                    "3.14.2",
+                    "3.14.5"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "Soc2": [
+                    "CC6.8",
+                    "CC7.1"
+                ]
+            }
+        },
+        {
+            "check_id": "DEFENDER-SAFELINKS-001.1",
+            "name": "Safe Links Availability",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE5L2": [
+                    "2.1.1"
+                ],
+                "Nist80053Low": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053Moderate": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053High": [
+                    "CM-6a",
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "NistCsf": [
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.7",
+                    "A.8.23"
+                ],
+                "PciDss": [
+                    "5.2.x",
+                    "5.3.x"
+                ],
+                "Cmmc": [
+                    "3.14.2",
+                    "3.14.5"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "CisaScuba": [
+                    "MS.EXO.15.1v1",
+                    "MS.EXO.15.2v1",
+                    "MS.EXO.15.3v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.8",
+                    "CC7.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "DEFENDER-ZAP-001.1",
+            "name": "ZAP for Teams",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "2.4.4"
+                ],
+                "Nist80053Low": [
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053Moderate": [
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "Nist80053High": [
+                    "SI-3a",
+                    "SI-8"
+                ],
+                "NistCsf": [
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.7",
+                    "A.8.23"
+                ],
+                "PciDss": [
+                    "5.2.x",
+                    "5.3.x"
+                ],
+                "Cmmc": [
+                    "3.14.2",
+                    "3.14.5"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "Soc2": [
+                    "CC6.8",
+                    "CC7.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-ADMIN-002.1",
+            "name": "Entra Admin Center Restricted",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.2.4"
+                ],
+                "CisE5L1": [
+                    "5.1.2.4"
+                ],
+                "Nist80053Low": [
+                    "AC-6(5)",
+                    "AC-3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(5)",
+                    "AC-3"
+                ],
+                "Nist80053High": [
+                    "AC-6(5)",
+                    "AC-3"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.6"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-ADMIN-003.1",
+            "name": "Emergency Access Accounts",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "1.1.2"
+                ],
+                "CisE5L1": [
+                    "1.1.2"
+                ],
+                "Nist80053Low": [
+                    "AC-2",
+                    "AC-2(2)"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2",
+                    "AC-2(2)"
+                ],
+                "Nist80053High": [
+                    "AC-2",
+                    "AC-2(2)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01",
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.16",
+                    "A.5.18",
+                    "A.8.2"
+                ],
+                "Stig": [
+                    "V-260334"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "8.6.x"
+                ],
+                "Cmmc": [
+                    "3.1.1"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(7)(i)"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-APPREG-001.1",
+            "name": "Users Can Register Applications",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "Nist80053Low": [
+                    "CM-7"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7"
+                ],
+                "Nist80053High": [
+                    "CM-7"
+                ],
+                "NistCsf": [
+                    "PR.IP-1"
+                ],
+                "Iso27001": [
+                    "A.12.6.2"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.5.3v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-APPS-001.1",
+            "name": "Third-party Integrated Apps Restricted",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.2.2"
+                ],
+                "CisE5L2": [
+                    "5.1.2.2"
+                ],
+                "Nist80053Low": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "Nist80053High": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.26"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.4.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.5.4v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-AUTHMETHOD-001.1",
+            "name": "SMS Authentication",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.3.5"
+                ],
+                "CisE5L1": [
+                    "5.2.3.5"
+                ],
+                "Nist80053Low": [
+                    "CM-7b",
+                    "IA-5c"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7b",
+                    "IA-5c"
+                ],
+                "Nist80053High": [
+                    "CM-7b",
+                    "IA-5c"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.20"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.3.4v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-AUTHMETHOD-001.2",
+            "name": "Voice Call Authentication",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.3.5"
+                ],
+                "CisE5L1": [
+                    "5.2.3.5"
+                ],
+                "Nist80053Low": [
+                    "CM-7b",
+                    "IA-5c"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7b",
+                    "IA-5c"
+                ],
+                "Nist80053High": [
+                    "CM-7b",
+                    "IA-5c"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.20"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.3.4v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-AUTHMETHOD-002.1",
+            "name": "Email OTP Authentication",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L2": [
+                    "5.2.3.7"
+                ],
+                "CisE5L2": [
+                    "5.2.3.7"
+                ],
+                "Nist80053Low": [
+                    "CM-7",
+                    "IA-5c"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7",
+                    "IA-5c"
+                ],
+                "Nist80053High": [
+                    "CM-7",
+                    "IA-5c"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5",
+                    "A.8.20"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.5.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-AUTHMETHOD-004.1",
+            "name": "System-Preferred MFA",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.3.6"
+                ],
+                "CisE5L1": [
+                    "5.2.3.6"
+                ],
+                "Nist80053Low": [
+                    "IA-2(1)",
+                    "IA-2(2)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-2(1)",
+                    "IA-2(2)"
+                ],
+                "Nist80053High": [
+                    "IA-2(1)",
+                    "IA-2(2)"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5"
+                ],
+                "PciDss": [
+                    "8.4.x"
+                ],
+                "Cmmc": [
+                    "3.5.3"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-CA-003.1",
+            "name": "Enabled CA Policies",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "Nist80053Low": [
+                    "AC-3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-3"
+                ],
+                "Nist80053High": [
+                    "AC-3"
+                ],
+                "NistCsf": [
+                    "PR.AC-4"
+                ],
+                "Iso27001": [
+                    "A.9.1.1"
+                ],
+                "PciDss": [
+                    "2.2.x",
+                    "7.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.1.2"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-CLOUDADMIN-001.1",
+            "name": "Cloud-Only Global Admins",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.1.1"
+                ],
+                "CisE5L1": [
+                    "1.1.1"
+                ],
+                "Nist80053Low": [
+                    "AC-6(5)",
+                    "AC-2"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(5)",
+                    "AC-2"
+                ],
+                "Nist80053High": [
+                    "AC-6(5)",
+                    "AC-2"
+                ],
+                "NistCsf": [
+                    "PR.AA-03",
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.18",
+                    "A.8.2"
+                ],
+                "Stig": [
+                    "V-260333"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.6",
+                    "3.1.1"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.7.4v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-CONSENT-001.1",
+            "name": "User Consent for Applications",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.5.1"
+                ],
+                "CisE5L2": [
+                    "5.1.5.1"
+                ],
+                "Nist80053Low": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "Nist80053High": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.26"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.4.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.5.1v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-CONSENT-002.1",
+            "name": "Admin Consent Workflow Enabled",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.5.2"
+                ],
+                "CisE5L1": [
+                    "5.1.5.2"
+                ],
+                "Nist80053Low": [
+                    "CM-4",
+                    "AC-6(10)"
+                ],
+                "Nist80053Moderate": [
+                    "CM-4",
+                    "AC-6(10)"
+                ],
+                "Nist80053High": [
+                    "CM-4",
+                    "AC-6(10)"
+                ],
+                "Nist80053Privacy": [
+                    "CM-4",
+                    "AC-6(10)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.9"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.4.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.5.2v1"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-DEVICE-001.1",
+            "name": "Azure AD Join Restriction",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.4.1"
+                ],
+                "CisE5L2": [
+                    "5.1.4.1"
+                ],
+                "Nist80053Low": [
+                    "AC-3",
+                    "CM-7"
+                ],
+                "Nist80053Moderate": [
+                    "AC-3",
+                    "CM-7"
+                ],
+                "Nist80053High": [
+                    "AC-3",
+                    "CM-7"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.1",
+                    "A.5.15"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.2",
+                    "3.4.6"
+                ],
+                "Hipaa": [
+                    "§164.310(b)",
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-DEVICE-002.1",
+            "name": "Maximum Devices Per User",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.4.2"
+                ],
+                "CisE5L1": [
+                    "5.1.4.2"
+                ],
+                "Nist80053Low": [
+                    "CM-8",
+                    "AC-19a"
+                ],
+                "Nist80053Moderate": [
+                    "CM-8",
+                    "AC-19a"
+                ],
+                "Nist80053High": [
+                    "CM-8",
+                    "AC-19a"
+                ],
+                "NistCsf": [
+                    "ID.AM-01",
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.1",
+                    "A.5.9"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.1",
+                    "3.1.18"
+                ],
+                "Hipaa": [
+                    "§164.310(b)",
+                    "§164.310(c)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-DEVICE-003.1",
+            "name": "Global Admins as Local Admin on Join",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.4.3"
+                ],
+                "CisE5L1": [
+                    "5.1.4.3"
+                ],
+                "Nist80053Low": [
+                    "AC-6(5)",
+                    "CM-6"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(5)",
+                    "CM-6"
+                ],
+                "Nist80053High": [
+                    "AC-6(5)",
+                    "CM-6"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.6",
+                    "3.4.2"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-DEVICE-004.1",
+            "name": "Local Admin Assignment on Entra Join",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.4.4"
+                ],
+                "CisE5L1": [
+                    "5.1.4.4"
+                ],
+                "Nist80053Low": [
+                    "AC-6(5)",
+                    "CM-6"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(5)",
+                    "CM-6"
+                ],
+                "Nist80053High": [
+                    "AC-6(5)",
+                    "CM-6"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.6",
+                    "3.4.2"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-DEVICE-005.1",
+            "name": "Local Administrator Password Solution (LAPS)",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.4.5"
+                ],
+                "CisE5L1": [
+                    "5.1.4.5"
+                ],
+                "Nist80053Low": [
+                    "IA-5",
+                    "CM-6"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5",
+                    "CM-6"
+                ],
+                "Nist80053High": [
+                    "IA-5",
+                    "CM-6"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17",
+                    "A.8.5"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.10",
+                    "3.4.2"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-DEVICE-006.1",
+            "name": "BitLocker Recovery Key Restriction",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.4.6"
+                ],
+                "CisE5L2": [
+                    "5.1.4.6"
+                ],
+                "Nist80053Low": [
+                    "AC-6",
+                    "AC-3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6",
+                    "AC-3"
+                ],
+                "Nist80053High": [
+                    "AC-6",
+                    "AC-3"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.24"
+                ],
+                "PciDss": [
+                    "7.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.2"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.312(a)(2)(iv)"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-GROUP-002.1",
+            "name": "Dynamic Group for Guest Users",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.3.1"
+                ],
+                "CisE5L1": [
+                    "5.1.3.1"
+                ],
+                "Nist80053Low": [
+                    "AC-2",
+                    "AC-6"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2",
+                    "AC-6"
+                ],
+                "Nist80053High": [
+                    "AC-2",
+                    "AC-6"
+                ],
+                "NistCsf": [
+                    "PR.AA-01",
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.16",
+                    "A.5.18"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.1.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-GUEST-002.1",
+            "name": "Guest Invitation Policy",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.6.3"
+                ],
+                "CisE5L2": [
+                    "5.1.6.3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(10)"
+                ],
+                "Nist80053High": [
+                    "AC-6(10)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.18"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.8.3v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-GUEST-004.1",
+            "name": "Guest Invitation Domain Restrictions",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.6.1"
+                ],
+                "CisE5L2": [
+                    "5.1.6.1"
+                ],
+                "Nist80053Low": [
+                    "AC-3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-3"
+                ],
+                "Nist80053High": [
+                    "AC-3"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.19"
+                ],
+                "PciDss": [
+                    "7.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.2",
+                    "3.1.20"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.8.2v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-LINKEDIN-001.1",
+            "name": "LinkedIn Account Connections",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L2": [
+                    "5.1.2.6"
+                ],
+                "CisE5L2": [
+                    "5.1.2.6"
+                ],
+                "Nist80053Low": [
+                    "CM-7"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7"
+                ],
+                "Nist80053High": [
+                    "CM-7"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.19"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-ORGSETTING-001.1",
+            "name": "User Consent for Applications",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.4"
+                ],
+                "CisE5L1": [
+                    "1.3.4"
+                ],
+                "Nist80053Low": [
+                    "CM-7",
+                    "CM-11"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7",
+                    "CM-11"
+                ],
+                "Nist80053High": [
+                    "CM-7",
+                    "CM-11"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.19",
+                    "A.8.26"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.4.9"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-ORGSETTING-002.1",
+            "name": "Forms Internal Phishing Protection",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.5"
+                ],
+                "CisE5L1": [
+                    "1.3.5"
+                ],
+                "Nist80053Moderate": [
+                    "SI-8"
+                ],
+                "Nist80053High": [
+                    "SI-8"
+                ],
+                "NistCsf": [
+                    "DE.CM-09"
+                ],
+                "Iso27001": [
+                    "A.8.23"
+                ],
+                "PciDss": [
+                    "5.4.x"
+                ],
+                "Cmmc": [
+                    "3.14.5"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(B)"
+                ],
+                "Soc2": [
+                    "CC6.8",
+                    "CC7.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-ORGSETTING-003.1",
+            "name": "Third-Party Storage in M365 Web Apps",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L2": [
+                    "1.3.7"
+                ],
+                "CisE5L2": [
+                    "1.3.7"
+                ],
+                "Nist80053Low": [
+                    "CM-7",
+                    "SC-7(10)"
+                ],
+                "Nist80053Moderate": [
+                    "CM-7",
+                    "SC-7(10)"
+                ],
+                "Nist80053High": [
+                    "CM-7",
+                    "SC-7(10)"
+                ],
+                "NistCsf": [
+                    "PR.DS-01",
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.19",
+                    "A.8.26"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.6",
+                    "3.13.1"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.7",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-ORGSETTING-004.1",
+            "name": "Shared Bookings Pages Restricted",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.9"
+                ],
+                "CisE5L1": [
+                    "1.3.9"
+                ],
+                "Nist80053Low": [
+                    "AC-3",
+                    "AC-6"
+                ],
+                "Nist80053Moderate": [
+                    "AC-3",
+                    "AC-6"
+                ],
+                "Nist80053High": [
+                    "AC-3",
+                    "AC-6"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.3"
+                ],
+                "PciDss": [
+                    "2.2.x",
+                    "7.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.1.2"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.1",
+            "name": "Password Expiration: mobile-server.de",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.10",
+            "name": "Password Expiration: kaz-tcs.de",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.11",
+            "name": "Password Expiration: www.ankbs.de",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.12",
+            "name": "Password Expiration: sip.myoffice365.in",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.13",
+            "name": "Password Expiration: www.myoffice365.in",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.14",
+            "name": "Password Expiration: office365.information-worker.pro",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.15",
+            "name": "Password Expiration: ttc-1eqfo17rz5.bettercallteams.com",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.16",
+            "name": "Password Expiration: ttc-xtu3ptkvlv.bettercallteams.com",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.2",
+            "name": "Password Expiration: ugoffice365.ms",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.3",
+            "name": "Password Expiration: ankbs.de",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.4",
+            "name": "Password Expiration: myoffice.mail.onmicrosoft.com",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.5",
+            "name": "Password Expiration: myoffice.onmicrosoft.com",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.6",
+            "name": "Password Expiration: kaz-office.de",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.7",
+            "name": "Password Expiration: information-worker.pro",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.8",
+            "name": "Password Expiration: myoffice365.in",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-001.9",
+            "name": "Password Expiration: my-shop24.biz",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "1.3.1"
+                ],
+                "CisE5L1": [
+                    "1.3.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.6.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PASSWORD-005.1",
+            "name": "Password Protection On-Premises",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.3.3"
+                ],
+                "CisE5L1": [
+                    "5.2.3.3"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PERUSER-001.1",
+            "name": "Per-user MFA (Legacy)",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.2.1"
+                ],
+                "CisE5L1": [
+                    "5.1.2.1"
+                ],
+                "Nist80053Low": [
+                    "IA-2(1)",
+                    "IA-2(2)",
+                    "CM-6"
+                ],
+                "Nist80053Moderate": [
+                    "IA-2(1)",
+                    "IA-2(2)",
+                    "CM-6"
+                ],
+                "Nist80053High": [
+                    "IA-2(1)",
+                    "IA-2(2)",
+                    "CM-6"
+                ],
+                "NistCsf": [
+                    "PR.AA-03"
+                ],
+                "Iso27001": [
+                    "A.8.5"
+                ],
+                "PciDss": [
+                    "8.4.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.5.3",
+                    "3.4.2"
+                ],
+                "Hipaa": [
+                    "§164.312(d)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PIM-001.1",
+            "name": "PIM Manages Privileged Roles",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE5L2": [
+                    "5.3.1"
+                ],
+                "Nist80053Low": [
+                    "AC-2",
+                    "AC-6(1)"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2",
+                    "AC-6(1)"
+                ],
+                "Nist80053High": [
+                    "AC-2",
+                    "AC-6(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.18",
+                    "A.8.2"
+                ],
+                "Stig": [
+                    "V-260336"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.1.5",
+                    "3.1.6"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.7.5v1",
+                    "MS.AAD.7.7v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PIM-002.1",
+            "name": "Access Reviews for Guest Users",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "5.3.2"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2(3)",
+                    "AC-2(1)"
+                ],
+                "Nist80053High": [
+                    "AC-2(3)",
+                    "AC-2(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.18"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.1.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.7.3v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PIM-003.1",
+            "name": "Access Reviews for Privileged Roles",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "5.3.3"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2(3)",
+                    "AC-2(1)"
+                ],
+                "Nist80053High": [
+                    "AC-2(3)",
+                    "AC-2(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.18",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.1.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.7.3v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PIM-004.1",
+            "name": "GA Activation Requires Approval",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "5.3.4"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(1)"
+                ],
+                "Nist80053High": [
+                    "AC-6(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.6"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.7.8v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-PIM-005.1",
+            "name": "PRA Activation Requires Approval",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "CisE5L1": [
+                    "5.3.5"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(1)"
+                ],
+                "Nist80053High": [
+                    "AC-6(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "7.2.x",
+                    "8.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.1.6"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)",
+                    "§164.308(a)(4)(i)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.7.9v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.3"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-SECDEFAULT-001.1",
+            "name": "Security Defaults Enabled",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "Nist80053Low": [
+                    "AC-2",
+                    "IA-2"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2",
+                    "IA-2"
+                ],
+                "Nist80053High": [
+                    "AC-2",
+                    "IA-2"
+                ],
+                "NistCsf": [
+                    "PR.AC-1"
+                ],
+                "Iso27001": [
+                    "A.9.2.1"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.5.3"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.312(a)(1)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.1.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-SECDEFAULT-001.2",
+            "name": "Security Defaults Enabled",
+            "section": "Identity",
+            "status": "Review",
+            "mappings": {
+                "Nist80053Low": [
+                    "AC-2",
+                    "IA-2"
+                ],
+                "Nist80053Moderate": [
+                    "AC-2",
+                    "IA-2"
+                ],
+                "Nist80053High": [
+                    "AC-2",
+                    "IA-2"
+                ],
+                "NistCsf": [
+                    "PR.AC-1"
+                ],
+                "Iso27001": [
+                    "A.9.2.1"
+                ],
+                "PciDss": [
+                    "8.2.x",
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.1",
+                    "3.5.3"
+                ],
+                "Hipaa": [
+                    "§164.312(d)",
+                    "§164.312(a)(1)"
+                ],
+                "CisaScuba": [
+                    "MS.AAD.1.1v1"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.2"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-SSPR-001.1",
+            "name": "SSPR Registration Campaign Targets All Users",
+            "section": "Identity",
+            "status": "Fail",
+            "mappings": {
+                "CisE3L1": [
+                    "5.2.4.1"
+                ],
+                "CisE5L1": [
+                    "5.2.4.1"
+                ],
+                "Nist80053Low": [
+                    "IA-5(1)"
+                ],
+                "Nist80053Moderate": [
+                    "IA-5(1)"
+                ],
+                "Nist80053High": [
+                    "IA-5(1)"
+                ],
+                "NistCsf": [
+                    "PR.AA-01"
+                ],
+                "Iso27001": [
+                    "A.5.17"
+                ],
+                "PciDss": [
+                    "8.3.x"
+                ],
+                "Cmmc": [
+                    "3.5.7",
+                    "3.5.8"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(5)(ii)(D)"
+                ],
+                "Soc2": [
+                    "CC6.1"
+                ]
+            }
+        },
+        {
+            "check_id": "ENTRA-TENANT-001.1",
+            "name": "Non-Admin Tenant Creation Restricted",
+            "section": "Identity",
+            "status": "Pass",
+            "mappings": {
+                "CisE3L1": [
+                    "5.1.2.3"
+                ],
+                "CisE5L1": [
+                    "5.1.2.3"
+                ],
+                "Nist80053Low": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "Nist80053Moderate": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "Nist80053High": [
+                    "AC-6(10)",
+                    "CM-5"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.8.2"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.5",
+                    "3.4.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC6.1",
+                    "CC6.3",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "EXO-DIRECTSEND-001.1",
+            "name": "Inbound Connectors - Unauthenticated Relay",
+            "section": "Email",
+            "status": "Review",
+            "mappings": {
+                "Nist80053Low": [
+                    "SC-7",
+                    "AC-17"
+                ],
+                "Nist80053Moderate": [
+                    "SC-7",
+                    "AC-17"
+                ],
+                "Nist80053High": [
+                    "SC-7",
+                    "AC-17"
+                ],
+                "NistCsf": [
+                    "PR.AC-03"
+                ],
+                "Iso27001": [
+                    "A.8.20",
+                    "A.8.23"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.7"
+                ]
+            }
+        },
+        {
+            "check_id": "FORMS-CONFIG-001.1",
+            "name": "External Users Can Respond to Forms",
+            "section": "Collaboration",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "3.6.1"
+                ],
+                "CisE5L1": [
+                    "3.6.1"
+                ],
+                "Nist80053Low": [
+                    "AC-3",
+                    "AC-22"
+                ],
+                "Nist80053Moderate": [
+                    "AC-3",
+                    "AC-22"
+                ],
+                "Nist80053High": [
+                    "AC-3",
+                    "AC-22"
+                ],
+                "NistCsf": [
+                    "PR.AA-05",
+                    "PR.DS-5"
+                ],
+                "Iso27001": [
+                    "A.5.15",
+                    "A.5.14"
+                ],
+                "Soc2": [
+                    "CC6.1",
+                    "CC6.7"
+                ]
+            }
+        },
+        {
+            "check_id": "INTUNE-ENROLL-001.1",
+            "name": "Personal Device Enrollment Blocked",
+            "section": "Intune",
+            "status": "Review",
+            "mappings": {
+                "CisE3L2": [
+                    "4.2"
+                ],
+                "CisE5L2": [
+                    "4.2"
+                ],
+                "Nist80053Low": [
+                    "AC-19a",
+                    "CM-7"
+                ],
+                "Nist80053Moderate": [
+                    "AC-19a",
+                    "CM-7"
+                ],
+                "Nist80053High": [
+                    "AC-19a",
+                    "CM-7"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.1",
+                    "A.6.7"
+                ],
+                "PciDss": [
+                    "2.2.x"
+                ],
+                "Cmmc": [
+                    "3.1.18",
+                    "3.1.19",
+                    "3.4.6"
+                ],
+                "Hipaa": [
+                    "§164.310(b)",
+                    "§164.310(c)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "PURVIEW-RETENTION-001.1",
+            "name": "Retention Policies Configured",
+            "section": "Security",
+            "status": "Review",
+            "mappings": {
+                "Nist80053Low": [
+                    "AU-11",
+                    "SI-12"
+                ],
+                "Nist80053Moderate": [
+                    "AU-11",
+                    "SI-12"
+                ],
+                "Nist80053High": [
+                    "AU-11",
+                    "SI-12"
+                ],
+                "NistCsf": [
+                    "PR.DS-3",
+                    "GV.RM-01"
+                ],
+                "Iso27001": [
+                    "A.5.33",
+                    "A.8.10"
+                ],
+                "Hipaa": [
+                    "§164.530(j)",
+                    "§164.316(b)(2)(i)"
+                ],
+                "Soc2": [
+                    "CC6.5",
+                    "C1.2"
+                ]
+            }
+        },
+        {
+            "check_id": "TEAMS-APPS-002.1",
+            "name": "Third-Party App Permission Policies",
+            "section": "Collaboration",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "8.4.1"
+                ],
+                "CisE5L1": [
+                    "8.4.1"
+                ],
+                "Nist80053Low": [
+                    "CM-11"
+                ],
+                "Nist80053Moderate": [
+                    "CM-11"
+                ],
+                "Nist80053High": [
+                    "CM-11"
+                ],
+                "NistCsf": [
+                    "PR.AA-05"
+                ],
+                "Iso27001": [
+                    "A.8.19",
+                    "A.8.26"
+                ],
+                "PciDss": [
+                    "2.2.x",
+                    "7.2.x"
+                ],
+                "Cmmc": [
+                    "3.4.9",
+                    "3.1.5"
+                ],
+                "Hipaa": [
+                    "§164.312(a)(1)"
+                ],
+                "Soc2": [
+                    "CC5",
+                    "CC8.1"
+                ]
+            }
+        },
+        {
+            "check_id": "TEAMS-REPORTING-001.1",
+            "name": "Report a Security Concern Enabled",
+            "section": "Collaboration",
+            "status": "Review",
+            "mappings": {
+                "CisE3L1": [
+                    "8.6.1"
+                ],
+                "CisE5L1": [
+                    "8.6.1"
+                ],
+                "Nist80053Moderate": [
+                    "SI-4(5)",
+                    "SI-4(12)"
+                ],
+                "Nist80053High": [
+                    "SI-4(5)",
+                    "SI-4(12)"
+                ],
+                "NistCsf": [
+                    "RS.CO-02"
+                ],
+                "Iso27001": [
+                    "A.6.8",
+                    "A.8.16"
+                ],
+                "Hipaa": [
+                    "§164.308(a)(6)(i)"
+                ],
+                "Soc2": [
+                    "CC7.1",
+                    "CC7.2"
+                ]
+            }
+        }
+    ],
+    "details": {
+        "ENTRA-APPS-001.1": {
+            "category": "Application Consent",
+            "setting": "Third-party Integrated Apps Restricted",
+            "current_value": "Allowed",
+            "recommended_value": "Restricted",
+            "status": "Fail",
+            "remediation": "Entra admin center > Users > User settings > Users can register applications > No. Also review Enterprise applications > User settings > Users can consent to apps."
+        },
+        "ENTRA-CONSENT-001.1": {
+            "category": "Application Consent",
+            "setting": "User Consent for Applications",
+            "current_value": "ManagePermissionGrantsForSelf.microsoft-user-default-recommended; ManagePermissionGrantsForSelf.microsoft-user-default-allow-consent-apps; ManagePermissionGrantsForOwnedResource.microsoft-dynamical...",
+            "recommended_value": "Do not allow user consent",
+            "status": "Fail",
+            "remediation": "Run: Update-MgPolicyAuthorizationPolicy -DefaultUserRolePermissions @{PermissionGrantPoliciesAssigned = @()}. Entra admin center > Enterprise applications > Consent and permissions."
+        },
+        "ENTRA-APPREG-001.1": {
+            "category": "Application Consent",
+            "setting": "Users Can Register Applications",
+            "current_value": "True",
+            "recommended_value": "False",
+            "status": "Fail",
+            "remediation": "Run: Update-MgPolicyAuthorizationPolicy -DefaultUserRolePermissions @{AllowedToCreateApps = $false}. Entra admin center > Users > User settings."
+        },
+        "ENTRA-AUTHMETHOD-002.1": {
+            "category": "Authentication Methods",
+            "setting": "Email OTP Authentication",
+            "current_value": "enabled",
+            "recommended_value": "disabled",
+            "status": "Fail",
+            "remediation": "Entra admin center > Protection > Authentication methods > Email OTP > Disable. Email OTP is a weaker authentication factor."
+        },
+        "ENTRA-AUTHMETHOD-001.1": {
+            "category": "Authentication Methods",
+            "setting": "SMS Authentication",
+            "current_value": "enabled",
+            "recommended_value": "disabled",
+            "status": "Fail",
+            "remediation": "Entra admin center > Protection > Authentication methods > SMS > Disable. SMS is vulnerable to SIM-swapping attacks."
+        },
+        "ENTRA-AUTHMETHOD-004.1": {
+            "category": "Authentication Methods",
+            "setting": "System-Preferred MFA",
+            "current_value": "not configured",
+            "recommended_value": "enabled",
+            "status": "Fail",
+            "remediation": "Entra admin center > Protection > Authentication methods > Settings > System-preferred multifactor authentication > Enabled."
+        },
+        "ENTRA-DEVICE-001.1": {
+            "category": "Device Management",
+            "setting": "Azure AD Join Restriction",
+            "current_value": "All users allowed",
+            "recommended_value": "Restricted to specific users/groups",
+            "status": "Fail",
+            "remediation": "Entra admin center > Devices > Device settings > Users may join devices to Microsoft Entra > Selected. Restrict to a specific group of authorized users."
+        },
+        "ENTRA-DEVICE-003.1": {
+            "category": "Device Management",
+            "setting": "Global Admins as Local Admin on Join",
+            "current_value": "Enabled",
+            "recommended_value": "Disabled",
+            "status": "Fail",
+            "remediation": "Entra admin center > Devices > Device settings > Global administrator is added as local administrator on the device during Azure AD Join > No."
+        },
+        "ENTRA-DEVICE-002.1": {
+            "category": "Device Management",
+            "setting": "Maximum Devices Per User",
+            "current_value": "50",
+            "recommended_value": "15 or fewer",
+            "status": "Fail",
+            "remediation": "Entra admin center > Devices > Device settings > Maximum number of devices per user. Set to 15 or lower."
+        },
+        "ENTRA-LINKEDIN-001.1": {
+            "category": "Directory Settings",
+            "setting": "LinkedIn Account Connections",
+            "current_value": "Enabled",
+            "recommended_value": "Disabled",
+            "status": "Fail",
+            "remediation": "Entra admin center > Users > User settings > LinkedIn account connections > No. Prevents data leakage between LinkedIn and organizational directory."
+        },
+        "ENTRA-GROUP-002.1": {
+            "category": "External Collaboration",
+            "setting": "Dynamic Group for Guest Users",
+            "current_value": "No dynamic guest group found",
+            "recommended_value": "At least 1 dynamic group for guests",
+            "status": "Fail",
+            "remediation": "Entra admin center > Groups > New group > Membership type = Dynamic User > Rule: (user.userType -eq \"Guest\"). This enables targeted policies for guest users."
+        },
+        "ENTRA-PASSWORD-001.14": {
+            "category": "Password Management",
+            "setting": "Password Expiration: office365.information-worker.pro",
+            "current_value": "days",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Fail",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.12": {
+            "category": "Password Management",
+            "setting": "Password Expiration: sip.myoffice365.in",
+            "current_value": "days",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Fail",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.11": {
+            "category": "Password Management",
+            "setting": "Password Expiration: www.ankbs.de",
+            "current_value": "days",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Fail",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.13": {
+            "category": "Password Management",
+            "setting": "Password Expiration: www.myoffice365.in",
+            "current_value": "days",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Fail",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-SSPR-001.1": {
+            "category": "Password Management",
+            "setting": "SSPR Registration Campaign Targets All Users",
+            "current_value": "Disabled",
+            "recommended_value": "Enabled for all users",
+            "status": "Fail",
+            "remediation": "Entra admin center > Protection > Authentication methods > Registration campaign > Enable and target All Users."
+        },
+        "ENTRA-SECDEFAULT-001.1": {
+            "category": "Security Defaults",
+            "setting": "Security Defaults Enabled",
+            "current_value": "False",
+            "recommended_value": "True (if no Conditional Access)",
+            "status": "Fail",
+            "remediation": "Run: Update-MgPolicyIdentitySecurityDefaultsEnforcementPolicy -IsEnabled $true. Entra admin center > Properties > Manage security defaults."
+        },
+        "ENTRA-ADMIN-002.1": {
+            "category": "Access Control",
+            "setting": "Entra Admin Center Restricted",
+            "current_value": "Property not available",
+            "recommended_value": "True",
+            "status": "Review",
+            "remediation": "Entra admin center > Identity > Users > User settings > Administration center > verify \"Restrict access to Microsoft Entra admin center\" is set to Yes."
+        },
+        "ENTRA-ADMIN-003.1": {
+            "category": "Admin Accounts",
+            "setting": "Emergency Access Accounts",
+            "current_value": "0 detected (heuristic: name contains break glass/emergency)",
+            "recommended_value": "2+ enabled break-glass accounts",
+            "status": "Review",
+            "remediation": "Create 2+ cloud-only emergency access accounts with Global Administrator role, excluded from all Conditional Access policies. Use naming convention including \"BreakGlass\" or \"Emergen..."
+        },
+        "ENTRA-PERUSER-001.1": {
+            "category": "Authentication Methods",
+            "setting": "Per-user MFA (Legacy)",
+            "current_value": "Could not query -- verify manually",
+            "recommended_value": "All per-user MFA disabled (use CA policies)",
+            "status": "Review",
+            "remediation": "Entra admin center > Users > Per-user MFA > Ensure all users show Disabled. Use Conditional Access policies for MFA enforcement instead."
+        },
+        "ENTRA-DEVICE-006.1": {
+            "category": "Device Management",
+            "setting": "BitLocker Recovery Key Restriction",
+            "current_value": "Review -- verify users cannot read own BitLocker keys",
+            "recommended_value": "Users restricted from recovering BitLocker keys",
+            "status": "Review",
+            "remediation": "Entra admin center > Devices > Device settings > Restrict users from recovering the BitLocker key(s) for their owned devices > Yes."
+        },
+        "ENTRA-GUEST-002.1": {
+            "category": "External Collaboration",
+            "setting": "Guest Invitation Policy",
+            "current_value": "All members can invite",
+            "recommended_value": "Admins and guest inviters only",
+            "status": "Review",
+            "remediation": "Run: Update-MgPolicyAuthorizationPolicy -AllowInvitesFrom 'adminsAndGuestInviters'. Entra admin center > External Identities > External collaboration settings."
+        },
+        "ENTRA-ORGSETTING-002.1": {
+            "category": "Organization Settings",
+            "setting": "Forms Internal Phishing Protection",
+            "current_value": "Cannot be checked via API",
+            "recommended_value": "Enabled",
+            "status": "Review",
+            "remediation": "M365 admin center > Settings > Org settings > Microsoft Forms > ensure internal phishing protection is enabled."
+        },
+        "ENTRA-ORGSETTING-004.1": {
+            "category": "Organization Settings",
+            "setting": "Shared Bookings Pages Restricted",
+            "current_value": "Cannot be checked via API",
+            "recommended_value": "Restricted to selected users",
+            "status": "Review",
+            "remediation": "M365 admin center > Settings > Org settings > Bookings > restrict shared booking pages to selected staff members."
+        },
+        "ENTRA-ORGSETTING-003.1": {
+            "category": "Organization Settings",
+            "setting": "Third-Party Storage in M365 Web Apps",
+            "current_value": "Cannot be checked via API",
+            "recommended_value": "Restricted (all third-party storage disabled)",
+            "status": "Review",
+            "remediation": "M365 admin center > Settings > Org settings > Microsoft 365 on the web > uncheck all third-party storage services."
+        },
+        "ENTRA-PASSWORD-005.1": {
+            "category": "Password Management",
+            "setting": "Password Protection On-Premises",
+            "current_value": "Password Rule Settings not available",
+            "recommended_value": "True",
+            "status": "Review",
+            "remediation": "Entra admin center > Protection > Authentication methods > Password protection. Verify on-premises password protection is enabled."
+        },
+        "ENTRA-PIM-002.1": {
+            "category": "Privileged Identity Management",
+            "setting": "Access Reviews for Guest Users",
+            "current_value": "PIM is available but not configured in this tenant",
+            "recommended_value": "At least 1 access review for guests",
+            "status": "Review",
+            "remediation": "This check requires Entra ID P2 (included in M365 E5). Entra admin center > Identity Governance > Access reviews."
+        },
+        "ENTRA-PIM-003.1": {
+            "category": "Privileged Identity Management",
+            "setting": "Access Reviews for Privileged Roles",
+            "current_value": "PIM is available but not configured in this tenant",
+            "recommended_value": "At least 1 access review for admin roles",
+            "status": "Review",
+            "remediation": "This check requires Entra ID P2 (included in M365 E5). Entra admin center > Identity Governance > Access reviews."
+        },
+        "ENTRA-PIM-004.1": {
+            "category": "Privileged Identity Management",
+            "setting": "GA Activation Requires Approval",
+            "current_value": "PIM is available but not configured in this tenant",
+            "recommended_value": "Yes",
+            "status": "Review",
+            "remediation": "This check requires Entra ID P2 (included in M365 E5). Entra admin center > Identity Governance > PIM > Azure AD roles > Settings."
+        },
+        "ENTRA-PIM-001.1": {
+            "category": "Privileged Identity Management",
+            "setting": "PIM Manages Privileged Roles",
+            "current_value": "PIM is available but not configured in this tenant",
+            "recommended_value": "PIM enabled for all privileged roles",
+            "status": "Review",
+            "remediation": "This check requires Entra ID P2 (included in M365 E5). Enable PIM at Entra admin center > Identity Governance > Privileged Identity Management."
+        },
+        "ENTRA-PIM-005.1": {
+            "category": "Privileged Identity Management",
+            "setting": "PRA Activation Requires Approval",
+            "current_value": "PIM is available but not configured in this tenant",
+            "recommended_value": "Yes",
+            "status": "Review",
+            "remediation": "This check requires Entra ID P2 (included in M365 E5). Entra admin center > Identity Governance > PIM > Azure AD roles > Settings."
+        },
+        "ENTRA-SECDEFAULT-001.2": {
+            "category": "Security Defaults",
+            "setting": "Security Defaults Enabled",
+            "current_value": "Unable to retrieve",
+            "recommended_value": "True (if no CA)",
+            "status": "Review",
+            "remediation": "Run: Update-MgPolicyIdentitySecurityDefaultsEnforcementPolicy -IsEnabled $true. Entra admin center > Properties > Manage security defaults."
+        },
+        "ENTRA-CLOUDADMIN-001.1": {
+            "category": "Admin Accounts",
+            "setting": "Cloud-Only Global Admins",
+            "current_value": "All 5 GA accounts are cloud-only",
+            "recommended_value": "All admin accounts cloud-only",
+            "status": "Pass",
+            "remediation": "No action needed."
+        },
+        "ENTRA-CONSENT-002.1": {
+            "category": "Application Consent",
+            "setting": "Admin Consent Workflow Enabled",
+            "current_value": "True",
+            "recommended_value": "True",
+            "status": "Pass",
+            "remediation": "Run: Update-MgPolicyAdminConsentRequestPolicy -IsEnabled $true. Entra admin center > Enterprise applications > Admin consent requests."
+        },
+        "ENTRA-AUTHMETHOD-001.2": {
+            "category": "Authentication Methods",
+            "setting": "Voice Call Authentication",
+            "current_value": "disabled",
+            "recommended_value": "disabled",
+            "status": "Pass",
+            "remediation": "Entra admin center > Protection > Authentication methods > Voice call > Disable. Voice is vulnerable to telephony-based attacks."
+        },
+        "ENTRA-CA-003.1": {
+            "category": "Conditional Access",
+            "setting": "Enabled CA Policies",
+            "current_value": "10",
+            "recommended_value": "1+",
+            "status": "Pass",
+            "remediation": "Run: Get-MgIdentityConditionalAccessPolicy | Where-Object {$_.State -eq 'enabled'}. Ensure policies are set to On, not Report-only."
+        },
+        "ENTRA-DEVICE-004.1": {
+            "category": "Device Management",
+            "setting": "Local Admin Assignment on Entra Join",
+            "current_value": "Additional local admins configured: 0",
+            "recommended_value": "Minimal local admin assignment",
+            "status": "Pass",
+            "remediation": "Entra admin center > Devices > Device settings > Manage Additional local administrators on all Azure AD joined devices. Minimize additional local admins."
+        },
+        "ENTRA-DEVICE-005.1": {
+            "category": "Device Management",
+            "setting": "Local Administrator Password Solution (LAPS)",
+            "current_value": "Enabled",
+            "recommended_value": "Enabled",
+            "status": "Pass",
+            "remediation": "Entra admin center > Devices > Device settings > Enable Microsoft Entra Local Administrator Password Solution (LAPS) > Yes."
+        },
+        "ENTRA-TENANT-001.1": {
+            "category": "Directory Settings",
+            "setting": "Non-Admin Tenant Creation Restricted",
+            "current_value": "False",
+            "recommended_value": "False",
+            "status": "Pass",
+            "remediation": "Run: Update-MgPolicyAuthorizationPolicy -DefaultUserRolePermissions @{AllowedToCreateTenants = $false}. Entra admin center > Users > User settings."
+        },
+        "ENTRA-GUEST-004.1": {
+            "category": "External Collaboration",
+            "setting": "Guest Invitation Domain Restrictions",
+            "current_value": "Restricted (invites: adminsGuestInvitersAndAllMembers)",
+            "recommended_value": "Restricted to allowed domains only",
+            "status": "Pass",
+            "remediation": "Entra admin center > External Identities > External collaboration settings > Collaboration restrictions > Allow invitations only to the specified domains."
+        },
+        "ENTRA-ORGSETTING-001.1": {
+            "category": "Organization Settings",
+            "setting": "User Consent for Applications",
+            "current_value": "Restricted",
+            "recommended_value": "Do not allow user consent",
+            "status": "Pass",
+            "remediation": "Entra admin center > Enterprise applications > Consent and permissions > User consent settings > Do not allow user consent."
+        },
+        "ENTRA-PASSWORD-001.3": {
+            "category": "Password Management",
+            "setting": "Password Expiration: ankbs.de",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.7": {
+            "category": "Password Management",
+            "setting": "Password Expiration: information-worker.pro",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.6": {
+            "category": "Password Management",
+            "setting": "Password Expiration: kaz-office.de",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.10": {
+            "category": "Password Management",
+            "setting": "Password Expiration: kaz-tcs.de",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.1": {
+            "category": "Password Management",
+            "setting": "Password Expiration: mobile-server.de",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.9": {
+            "category": "Password Management",
+            "setting": "Password Expiration: my-shop24.biz",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.4": {
+            "category": "Password Management",
+            "setting": "Password Expiration: myoffice.mail.onmicrosoft.com",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.5": {
+            "category": "Password Management",
+            "setting": "Password Expiration: myoffice.onmicrosoft.com",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.8": {
+            "category": "Password Management",
+            "setting": "Password Expiration: myoffice365.in",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.15": {
+            "category": "Password Management",
+            "setting": "Password Expiration: ttc-1eqfo17rz5.bettercallteams.com",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.16": {
+            "category": "Password Management",
+            "setting": "Password Expiration: ttc-xtu3ptkvlv.bettercallteams.com",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "ENTRA-PASSWORD-001.2": {
+            "category": "Password Management",
+            "setting": "Password Expiration: ugoffice365.ms",
+            "current_value": "Never expires",
+            "recommended_value": "Never expires (with MFA)",
+            "status": "Pass",
+            "remediation": "Run: Update-MgDomain -DomainId {domain} -PasswordValidityPeriodInDays 2147483647. M365 admin center > Settings > Password expiration policy."
+        },
+        "CA-DEVICECODE-001.1": {
+            "category": "Conditional Access",
+            "setting": "Device Code Flow Blocked",
+            "current_value": "No matching CA policy found",
+            "recommended_value": "At least 1 policy",
+            "status": "Fail",
+            "remediation": "Create a CA policy: Target All users > Conditions > Authentication flows > Device code flow > Grant > Block access. Entra admin center > Protection > Conditional Access."
+        },
+        "CA-DEVICE-002.1": {
+            "category": "Conditional Access",
+            "setting": "Managed Device for Security Info Registration",
+            "current_value": "No matching CA policy found",
+            "recommended_value": "At least 1 policy",
+            "status": "Fail",
+            "remediation": "Create a CA policy: User actions > Register security information > Grant > Require compliant device. Entra admin center > Protection > Conditional Access."
+        },
+        "CA-PHISHRES-001.1": {
+            "category": "Conditional Access",
+            "setting": "Phishing-Resistant MFA for Admins",
+            "current_value": "No matching CA policy found",
+            "recommended_value": "At least 1 policy",
+            "status": "Fail",
+            "remediation": "Create a CA policy: Target admin roles > Grant > Require authentication strength > Phishing-resistant MFA. Entra admin center > Protection > Conditional Access."
+        },
+        "CA-USERRISK-001.1": {
+            "category": "Conditional Access",
+            "setting": "User Risk Policy Configured",
+            "current_value": "No matching CA policy found",
+            "recommended_value": "At least 1 policy",
+            "status": "Fail",
+            "remediation": "Create a CA policy: Target All users > Conditions > User risk > High > Grant > Require password change + MFA. Entra admin center > Protection > Conditional Access."
+        },
+        "CA-LEGACYAUTH-001.1": {
+            "category": "Conditional Access",
+            "setting": "Legacy Authentication Blocked",
+            "current_value": "Yes (2 policy: Sperren von Legacy Apps; M365 Lighthouse - Block Legacy Authentication)",
+            "recommended_value": "At least 1 policy",
+            "status": "Pass",
+            "remediation": "No action needed."
+        },
+        "CA-MFA-ADMIN-001.1": {
+            "category": "Conditional Access",
+            "setting": "MFA Required for Admin Roles",
+            "current_value": "Yes (2 policy: Baseline - Require MFA for Admins; Microsoft-managed: Multifactor authentication for admins accessing Microsoft Admin Portals)",
+            "recommended_value": "At least 1 policy",
+            "status": "Pass",
+            "remediation": "No action needed."
+        },
+        "CA-SIGNINRISK-002.1": {
+            "category": "Conditional Access",
+            "setting": "Sign-in Risk Blocks Medium+High",
+            "current_value": "Yes (1 policy: Microsoft-managed: Multifactor authentication and reauthentication for risky sign-ins)",
+            "recommended_value": "At least 1 policy",
+            "status": "Pass",
+            "remediation": "No action needed."
+        },
+        "CA-SIGNINRISK-001.1": {
+            "category": "Conditional Access",
+            "setting": "Sign-in Risk Policy Configured",
+            "current_value": "Yes (1 policy: Microsoft-managed: Multifactor authentication and reauthentication for risky sign-ins)",
+            "recommended_value": "At least 1 policy",
+            "status": "Pass",
+            "remediation": "No action needed."
+        },
+        "EXO-DIRECTSEND-001.1": {
+            "category": "Mail Flow",
+            "setting": "Inbound Connectors - Unauthenticated Relay",
+            "current_value": "Get-InboundConnector not available",
+            "recommended_value": "No open relay connectors",
+            "status": "Review",
+            "remediation": "Connect to Exchange Online PowerShell to check inbound connector configuration."
+        },
+        "INTUNE-ENROLL-001.1": {
+            "category": "Device Enrollment",
+            "setting": "Personal Device Enrollment Blocked",
+            "current_value": "Insufficient permissions or license (Intune required)",
+            "recommended_value": "Block personal device enrollment",
+            "status": "Review",
+            "remediation": "This check requires Intune license and DeviceManagementConfiguration.Read.All permission."
+        },
+        "DEFENDER-PRIORITY-001.1": {
+            "category": "Priority Accounts",
+            "setting": "Preset Security Policies Configured",
+            "current_value": "Get-EOPProtectionPolicyRule not available",
+            "recommended_value": "Strict or Standard preset policy",
+            "status": "Review",
+            "remediation": "Connect to Exchange Online PowerShell to check preset security policy rules."
+        },
+        "DEFENDER-PRIORITY-002.1": {
+            "category": "Priority Accounts",
+            "setting": "Strict Preset Covers Priority Users",
+            "current_value": "Get-EOPProtectionPolicyRule not available",
+            "recommended_value": "Strict preset targets priority accounts",
+            "status": "Review",
+            "remediation": "Connect to Exchange Online PowerShell to check preset security policy rules."
+        },
+        "DEFENDER-SAFEATTACH-001.1": {
+            "category": "Safe Attachments",
+            "setting": "Safe Attachments Availability",
+            "current_value": "Not licensed",
+            "recommended_value": "Defender for Office 365 P1+",
+            "status": "Review",
+            "remediation": "Safe Attachments requires Defender for Office 365 Plan 1 or higher."
+        },
+        "DEFENDER-SAFEATTACH-002.1": {
+            "category": "Safe Attachments",
+            "setting": "Safe Attachments for SPO/OneDrive/Teams",
+            "current_value": "Not licensed",
+            "recommended_value": "Defender for Office 365 P1+",
+            "status": "Review",
+            "remediation": "Safe Attachments for SPO/OneDrive/Teams requires Defender for Office 365 Plan 1 or higher."
+        },
+        "DEFENDER-SAFELINKS-001.1": {
+            "category": "Safe Links",
+            "setting": "Safe Links Availability",
+            "current_value": "Not licensed",
+            "recommended_value": "Defender for Office 365 P1+",
+            "status": "Review",
+            "remediation": "Safe Links requires Defender for Office 365 Plan 1 or higher."
+        },
+        "DEFENDER-ZAP-001.1": {
+            "category": "Zero-Hour Auto Purge",
+            "setting": "ZAP for Teams",
+            "current_value": "Not licensed (Defender for Office 365 required)",
+            "recommended_value": "Defender for Office 365 with Teams ZAP",
+            "status": "Review",
+            "remediation": "ZAP for Teams requires Defender for Office 365. Upgrade license to enable this capability."
+        },
+        "COMPLIANCE-AUDIT-001.1": {
+            "category": "Audit",
+            "setting": "Unified Audit Log Ingestion",
+            "current_value": "Cmdlet not available",
+            "recommended_value": "True",
+            "status": "Review",
+            "remediation": "Connect to Security &amp; Compliance PowerShell to check audit log configuration."
+        },
+        "COMPLIANCE-DLP-001.1": {
+            "category": "Data Loss Prevention",
+            "setting": "DLP Policies",
+            "current_value": "Cmdlet not available",
+            "recommended_value": "At least 1 enabled",
+            "status": "Review",
+            "remediation": "Connect to Security &amp; Compliance PowerShell to check DLP policies."
+        },
+        "COMPLIANCE-LABELS-001.1": {
+            "category": "Information Protection",
+            "setting": "Sensitivity Label Policies",
+            "current_value": "Cmdlet not available",
+            "recommended_value": "At least 1 published",
+            "status": "Review",
+            "remediation": "Connect to Security &amp; Compliance PowerShell to check sensitivity labels."
+        },
+        "PURVIEW-RETENTION-001.1": {
+            "category": "Retention Policies",
+            "setting": "Retention Policies Configured",
+            "current_value": "Cmdlet not available",
+            "recommended_value": "At least 1 enabled",
+            "status": "Review",
+            "remediation": "Connect to Security &amp; Compliance PowerShell to check retention policies: Connect-Service -Service Purview."
+        },
+        "TEAMS-APPS-002.1": {
+            "category": "Teams Apps",
+            "setting": "Third-Party App Permission Policies",
+            "current_value": "Cannot be fully checked via API",
+            "recommended_value": "Block third-party apps or restrict to approved list",
+            "status": "Review",
+            "remediation": "Teams admin center > Teams apps > Permission policies > Org-wide app settings > Third-party apps > Off (or restrict to approved apps)."
+        },
+        "TEAMS-REPORTING-001.1": {
+            "category": "Teams Settings",
+            "setting": "Report a Security Concern Enabled",
+            "current_value": "Cannot be checked via API",
+            "recommended_value": "Enabled in messaging policies",
+            "status": "Review",
+            "remediation": "Teams admin center > Messaging policies > Global (Org-wide default) > Report a security concern > On."
+        },
+        "FORMS-CONFIG-001.1": {
+            "category": "External Sharing",
+            "setting": "External Users Can Respond to Forms",
+            "current_value": "Permission denied -- OrgSettings-Forms.Read.All required",
+            "recommended_value": "False",
+            "status": "Review",
+            "remediation": "Reconnect with the OrgSettings-Forms.Read.All permission scope to check Microsoft Forms settings."
+        }
+    }
+}

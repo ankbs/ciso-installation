@@ -1,0 +1,26 @@
+# Environment Variables (Secrets)
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Python
+__pycache__/
+*.pyc
+
+# Databases & Volumes
+postgres_data/
+*.db
+*.sqlite3
+
+# PowerShell & Pester
+.pester/
+*.log
+
+# Windows / OS
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/

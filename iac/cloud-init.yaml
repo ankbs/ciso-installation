@@ -1,0 +1,40 @@
+#cloud-config
+# ==============================================================================
+# Cloud-Init Template: Automated Docker & CISO Assistant Provisioning
+# Target OS: Ubuntu 22.04 LTS / 24.04 LTS (Oracle Cloud VM)
+# ==============================================================================
+
+# Configure 2GB Swap Space to support 1GB RAM on AMD micro shapes
+swap:
+  filename: /swapfile
+  size: 2147483648
+  maxsize: 2147483648
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - docker.io
+  - docker-compose-v2
+  - git
+  - curl
+
+runcmd:
+  # 1. Enable and start Docker service
+  - systemctl enable docker
+  - systemctl start docker
+  
+  # 2. Add default ubuntu user to docker group
+  - usermod -aG docker ubuntu
+  
+  # 3. Clone CISO Assistant Community Edition
+  - git clone https://github.com/intuitem/ciso-assistant-community.git /home/ubuntu/ciso-assistant
+  - chown -R ubuntu:ubuntu /home/ubuntu/ciso-assistant
+  
+  # 4. Create a default, non-interactive configuration if needed, or prepare the setup
+  # Note: The user can log in and run `./docker-compose.sh` to complete the SSL/domain configuration,
+  # or we can automatically start it in HTTP mode for testing.
+  - cd /home/ubuntu/ciso-assistant
+  
+log:
+  output: '/var/log/cloud-init-ciso-setup.log'
