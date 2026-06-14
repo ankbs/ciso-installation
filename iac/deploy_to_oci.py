@@ -128,7 +128,8 @@ def main():
             variables={
                 "compartment_ocid": compartment_id,
                 "ssh_public_key": env_vars.get("SSH_PUBLIC_KEY"),
-                "availability_domain_index": ad_index
+                "availability_domain_index": ad_index,
+                "github_repo": env_vars.get("GITHUB_REPO", "")
             }
         )
         try:
@@ -150,7 +151,8 @@ def main():
             variables={
                 "compartment_ocid": compartment_id,
                 "ssh_public_key": env_vars.get("SSH_PUBLIC_KEY"),
-                "availability_domain_index": ad_index
+                "availability_domain_index": ad_index,
+                "github_repo": env_vars.get("GITHUB_REPO", "")
             }
         )
         try:
@@ -205,7 +207,8 @@ def main():
                     "availability_domain_index": ad,
                     "instance_shape": shape_name,
                     "instance_ocpus": str(ocpus),
-                    "instance_memory_gbs": str(memory)
+                    "instance_memory_gbs": str(memory),
+                    "github_repo": env_vars.get("GITHUB_REPO", "")
                 }
             )
             try:

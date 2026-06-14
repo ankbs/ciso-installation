@@ -60,3 +60,9 @@ variable "extra_subnet_cidr" {
   description = "The CIDR block for the Extra Subnet."
   default     = "10.250.250.16/29"
 }
+
+variable "github_repo" {
+  type        = string
+  description = "The owner/repository of the user's fork (e.g., username/ciso-installation)."
+  default     = ""
+}

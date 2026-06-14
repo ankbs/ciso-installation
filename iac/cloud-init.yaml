@@ -29,12 +29,45 @@ runcmd:
   
   # 3. Clone CISO Assistant Community Edition
   - git clone https://github.com/intuitem/ciso-assistant-community.git /home/ubuntu/ciso-assistant
+  
+  # 4. Clone User's Fork Repository (passed via Terraform templatefile)
+  - git clone https://github.com/${github_repo}.git /home/ubuntu/ciso-installation
+  
+  # 5. Copy GRC Setup files into CISO Assistant db/ folder
+  - mkdir -p /home/ubuntu/ciso-assistant/db
+  - cp /home/ubuntu/ciso-installation/*.py /home/ubuntu/ciso-assistant/db/
+  - cp /home/ubuntu/ciso-installation/*.json /home/ubuntu/ciso-assistant/db/
+  - cp -r /home/ubuntu/ciso-installation/evidences /home/ubuntu/ciso-assistant/db/
+  
+  # 6. Fix file permissions
   - chown -R ubuntu:ubuntu /home/ubuntu/ciso-assistant
+  - chown -R ubuntu:ubuntu /home/ubuntu/ciso-installation
   
-  # 4. Create a default, non-interactive configuration if needed, or prepare the setup
-  # Note: The user can log in and run `./docker-compose.sh` to complete the SSL/domain configuration,
-  # or we can automatically start it in HTTP mode for testing.
+  # 7. Start Docker Compose services
   - cd /home/ubuntu/ciso-assistant
+  - docker compose pull
+  - docker compose up -d
   
+  # 8. Wait for API and run GRC seeder scripts inside container
+  - |
+    echo "Waiting for CISO Assistant API to boot up..."
+    for i in {1..30}; do
+      if curl -k -s http://localhost:8000/api/health/ | grep -q "ok" || curl -k -s https://localhost:8443/api/health/ | grep -q "ok"; then
+        echo "API is healthy! Seeding GRC database..."
+        sleep 5
+        docker compose exec -T backend python db/grc_setup.py || echo "grc_setup failed"
+        docker compose exec -T backend python db/import_m365_assess.py || echo "import_m365_assess failed"
+        docker compose exec -T backend python db/grc_setup_m365_deconstruction.py || echo "grc_setup_m365_deconstruction failed"
+        docker compose exec -T backend python db/grc_setup_metrology.py || echo "grc_setup_metrology failed"
+        docker compose exec -T backend python db/grc_link_all_frameworks.py || echo "grc_link_all_frameworks failed"
+        docker compose exec -T backend python db/import_m365_findings.py || echo "import_m365_findings failed"
+        docker compose exec -T backend python db/grc_profile_setup.py --profile sme || echo "grc_profile_setup failed"
+        docker compose exec -T backend python db/populate_privacy_custom.py || echo "populate_privacy_custom failed"
+        break
+      fi
+      echo "Waiting... (attempt $i/30)"
+      sleep 10
+    done
+
 log:
   output: '/var/log/cloud-init-ciso-setup.log'
