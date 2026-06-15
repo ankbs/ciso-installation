@@ -273,6 +273,7 @@ def main():
                     print("\n==================== DEPLOYMENT OUTPUTS ====================")
                     bastion_id = None
                     instance_private_ip = None
+                    region = env_vars.get("OCI_REGION", "eu-frankfurt-1")
                     for out in outputs:
                         print(f"{out.output_name}: {out.output_value}")
                         if out.output_name == "bastion_id":
@@ -281,11 +282,30 @@ def main():
                             instance_private_ip = out.output_value
                     print("============================================================\n")
                     
-                    ssh_pub = env_vars.get("SSH_PUBLIC_KEY")
-                    if bastion_id and instance_private_ip and ssh_pub:
-                        log("Creating secure OCI Bastion session for port-forwarding to GRC Assistant (Port 8443)...")
+                    # Create a ready-to-use Bastion port-forwarding session via OCI SDK
+                    if bastion_id and instance_private_ip:
+                        log("Creating OCI Bastion port-forwarding session automatically...")
                         try:
                             bastion_client = oci.bastion.BastionClient(config)
+                            
+                            # Use the SSH public key from the environment
+                            ssh_pub_key = env_vars.get("SSH_PUBLIC_KEY", "").strip()
+                            # OCI Bastion needs an OpenSSH format public key
+                            # The portal generates SPKI format - wrap it properly if needed
+                            if not ssh_pub_key.startswith("ssh-rsa") and not ssh_pub_key.startswith("ecdsa-") and not ssh_pub_key.startswith("ssh-ed25519"):
+                                # Generate a new temporary key pair for the Bastion session
+                                import subprocess
+                                tmp_key = "/tmp/bastion_key"
+                                subprocess.run(["ssh-keygen", "-t", "ed25519", "-f", tmp_key, "-N", "", "-C", "grc-bastion-session"], 
+                                             capture_output=True)
+                                with open(f"{tmp_key}.pub") as kf:
+                                    ssh_pub_key = kf.read().strip()
+                                with open(tmp_key) as kf:
+                                    session_private_key = kf.read()
+                                log("Generated temporary ED25519 key pair for Bastion session.")
+                            else:
+                                session_private_key = None
+                            
                             session_details = oci.bastion.models.CreateSessionDetails(
                                 bastion_id=bastion_id,
                                 target_resource_details=oci.bastion.models.CreatePortForwardingSessionTargetResourceDetails(
@@ -293,35 +313,55 @@ def main():
                                     target_resource_private_ip_address=instance_private_ip
                                 ),
                                 key_details=oci.bastion.models.PublicKeyDetails(
-                                    public_key_content=ssh_pub
+                                    public_key_content=ssh_pub_key
                                 ),
                                 display_name="grc-web-session",
                                 key_type="PUB",
                                 session_ttl_in_seconds=10800
                             )
-                            session_response = call_oci_with_retry(bastion_client.create_session, session_details)
-                            session_id = session_response.data.id
+                            session_resp = call_oci_with_retry(bastion_client.create_session, session_details)
+                            session_id = session_resp.data.id
                             log(f"Bastion session created. Session OCID: {session_id}")
-                            log("Waiting for Bastion session to become active...")
-                            
-                            session_ssh_cmd = None
-                            for _ in range(30):
-                                session_status = call_oci_with_retry(bastion_client.get_session, session_id).data
-                                if session_status.lifecycle_state == "ACTIVE":
-                                    session_ssh_cmd = session_status.ssh_metadata.get("command")
+                            log("Waiting for Bastion session to become ACTIVE (max 90s)...")
+
+                            session_ssh_metadata = None
+                            for _ in range(18):  # 18 x 5s = 90s
+                                session_data = call_oci_with_retry(bastion_client.get_session, session_id).data
+                                log(f"  Bastion session state: {session_data.lifecycle_state}")
+                                if session_data.lifecycle_state == "ACTIVE":
+                                    session_ssh_metadata = session_data.ssh_metadata
                                     break
                                 time.sleep(5)
 
-                            if session_ssh_cmd:
+                            if session_ssh_metadata:
+                                raw_cmd = session_ssh_metadata.get("command", "")
+                                # Replace placeholder with actual port and note for private key
+                                ssh_cmd = raw_cmd.replace("<privateKey>", "grc_oci_private_key.pem").replace("<localPort>", "8443")
                                 print(f"\n==================== BASTION SSH COMMAND ====================")
-                                print(session_ssh_cmd)
-                                print("============================================================\n")
+                                print(ssh_cmd)
+                                print("==============================================================\n")
+                                print(f"[INFO] Führe diesen Befehl in PowerShell aus und öffne dann: https://localhost:8443")
+                                sys.stdout.flush()
+                                
+                                if session_private_key:
+                                    log("[INFO] Temporärer Private Key (für Bastion-Session):")
+                                    print("-----BEGIN OPENSSH PRIVATE KEY-----")
+                                    print(session_private_key)
+                                    print("-----END OPENSSH PRIVATE KEY-----")
                             else:
-                                log("[WARNING] Bastion session did not activate in time.")
+                                log("[WARNING] Bastion session did not activate in 90s. Manual connection required.")
+                                # Fallback: print manual connection instructions
+                                print(f"\n[MANUAL] ssh -i grc_oci_private_key.pem -N -L 8443:{instance_private_ip}:8443 -p 22 {session_id}@host.bastion.{region}.oci.oraclecloud.com")
+
                         except Exception as e:
-                            log(f"[WARNING] Failed to create Bastion session: {e}")
+                            log(f"[WARNING] Bastion session creation failed: {e}")
+                            # Fallback: Print instructions to connect via OCI Console
+                            print(f"\n[MANUAL-FALLBACK] Connect via OCI Console Bastion > Sessions > Create Port Forwarding Session")
+                            print(f"  Bastion OCID: {bastion_id}")
+                            print(f"  Target Private IP: {instance_private_ip}")
+                            print(f"  Target Port: 8443")
                     
-                    log("Your CISO Assistant container is now starting via Cloud-Init.")
+                    log("Your CISO Assistant container is now starting via Cloud-Init. Check setup_status.json in your repo for progress.")
                 except Exception as e:
                     print(f"[WARNING] Failed to fetch output details: {e}")
                 break
