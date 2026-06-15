@@ -271,9 +271,55 @@ def main():
                     outputs = outputs_response.data.items
                     
                     print("\n==================== DEPLOYMENT OUTPUTS ====================")
+                    bastion_id = None
+                    instance_private_ip = None
                     for out in outputs:
                         print(f"{out.output_name}: {out.output_value}")
+                        if out.output_name == "bastion_id":
+                            bastion_id = out.output_value
+                        elif out.output_name == "instance_private_ip":
+                            instance_private_ip = out.output_value
                     print("============================================================\n")
+                    
+                    ssh_pub = env_vars.get("SSH_PUBLIC_KEY")
+                    if bastion_id and instance_private_ip and ssh_pub:
+                        log("Creating secure OCI Bastion session for port-forwarding to GRC Assistant (Port 8443)...")
+                        try:
+                            bastion_client = oci.bastion.BastionClient(config)
+                            session_details = oci.bastion.models.CreateSessionDetails(
+                                bastion_id=bastion_id,
+                                target_resource_details=oci.bastion.models.CreatePortForwardingSessionTargetResourceDetails(
+                                    target_resource_port=8443,
+                                    target_resource_private_ip_address=instance_private_ip
+                                ),
+                                key_details=oci.bastion.models.PublicKeyDetails(
+                                    public_key_content=ssh_pub
+                                ),
+                                display_name="grc-web-session",
+                                key_type="PUB",
+                                session_ttl_in_seconds=10800
+                            )
+                            session_response = call_oci_with_retry(bastion_client.create_session, session_details)
+                            session_id = session_response.data.id
+                            log(f"Bastion session created. Session OCID: {session_id}")
+                            log("Waiting for Bastion session to become active...")
+                            
+                            session_ssh_cmd = None
+                            for _ in range(30):
+                                session_status = call_oci_with_retry(bastion_client.get_session, session_id).data
+                                if session_status.lifecycle_state == "ACTIVE":
+                                    session_ssh_cmd = session_status.ssh_metadata.get("command")
+                                    break
+                                time.sleep(5)
+
+                            if session_ssh_cmd:
+                                print(f"\n==================== BASTION SSH COMMAND ====================")
+                                print(session_ssh_cmd)
+                                print("============================================================\n")
+                            else:
+                                log("[WARNING] Bastion session did not activate in time.")
+                        except Exception as e:
+                            log(f"[WARNING] Failed to create Bastion session: {e}")
                     
                     log("Your CISO Assistant container is now starting via Cloud-Init.")
                 except Exception as e:
