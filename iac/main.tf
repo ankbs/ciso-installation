@@ -31,7 +31,7 @@ resource "oci_core_nat_gateway" "grc_nat_gateway" {
   display_name   = "grc_nat_gateway"
 }
 
-# 3. Route Table (Routet den ausgehenden Datenverkehr über das NAT Gateway)
+# 3. Route Table (Routet den ausgehenden Datenverkehr ueber das NAT Gateway)
 resource "oci_core_route_table" "private_route_table" {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.grc_vcn.id
@@ -44,26 +44,22 @@ resource "oci_core_route_table" "private_route_table" {
   }
 }
 
-# 4. Security List (Firewall-Regeln für das private Subnetz)
+# 4. Security List (Firewall-Regeln fuer das private Subnetz)
 resource "oci_core_security_list" "private_security_list" {
   compartment_id = var.compartment_ocid
   vcn_id         = oci_core_vcn.grc_vcn.id
   display_name   = "private_security_list"
 
-  # Egress Rules (Ausgehender Verkehr: Erlaubt VM Updates & Cloudflare Verbindung)
   egress_security_rules {
     destination      = "0.0.0.0/0"
-    protocol         = "all" # Erlaubt jeglichen ausgehenden Verkehr über das NAT Gateway
+    protocol         = "all"
     destination_type = "CIDR_BLOCK"
   }
 
-  # Ingress Rules (Eingehender Verkehr: Blockiert das gesamte Internet)
-  # Erlaubt SSH (Port 22) AUSSCHLIESSLICH aus dem VCN Adressbereich (wird von Bastion genutzt)
   ingress_security_rules {
-    protocol    = "6" # TCP
+    protocol    = "6"
     source      = var.vcn_cidr
     source_type = "CIDR_BLOCK"
-
     tcp_options {
       min = 22
       max = 22
@@ -71,7 +67,7 @@ resource "oci_core_security_list" "private_security_list" {
   }
 }
 
-# 5. Private Subnet (Für die GRC-Plattform VM)
+# 5. Private Subnet (Fuer die GRC-Plattform VM)
 resource "oci_core_subnet" "private_subnet" {
   compartment_id    = var.compartment_ocid
   vcn_id            = oci_core_vcn.grc_vcn.id
@@ -80,12 +76,10 @@ resource "oci_core_subnet" "private_subnet" {
   dns_label         = "private"
   route_table_id    = oci_core_route_table.private_route_table.id
   security_list_ids = [oci_core_security_list.private_security_list.id]
-  
-  # Verhindert Zuweisung einer öffentlichen IP
   prohibit_public_ip_on_vnic = true
 }
 
-# 6. Extra Subnet (Für spätere Erweiterungen)
+# 6. Extra Subnet (Fuer spaetere Erweiterungen)
 resource "oci_core_subnet" "extra_subnet" {
   compartment_id    = var.compartment_ocid
   vcn_id            = oci_core_vcn.grc_vcn.id
@@ -94,7 +88,6 @@ resource "oci_core_subnet" "extra_subnet" {
   dns_label         = "extra"
   route_table_id    = oci_core_route_table.private_route_table.id
   security_list_ids = [oci_core_security_list.private_security_list.id]
-  
   prohibit_public_ip_on_vnic = true
 }
 
@@ -121,32 +114,40 @@ resource "oci_core_instance" "grc_instance" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key
-    # Injiziert das Cloud-Init Skript zur automatischen Docker- & CISO Assistant Installation
-    user_data           = base64encode(templatefile("${path.module}/cloud-init.yaml", {
-      github_repo       = var.github_repo
-      github_token      = var.github_token
-      notification_email = var.notification_email
-    }))
+    # WICHTIG: replace() statt templatefile() verwenden!
+    # templatefile() interpretiert ALLE ${} in der YAML als Template-Variablen,
+    # auch Bash-Variablen wie ${CISO_DIR} und Python f-Strings.
+    # Daher nutzen wir @PLACEHOLDER@ in der YAML und ersetzen sie hier.
+    user_data           = base64encode(
+      replace(
+        replace(
+          replace(
+            file("${path.module}/cloud-init.yaml"),
+            "@GITHUB_REPO@", var.github_repo
+          ),
+          "@GITHUB_TOKEN@", var.github_token
+        ),
+        "@NOTIFICATION_EMAIL@", var.notification_email
+      )
+    )
   }
 
   source_details {
     source_type = "image"
-    # Findet automatisch das aktuelle Ubuntu Image
     source_id   = data.oci_core_images.ubuntu_images.images[0].id
   }
 }
 
-# 8. OCI Bastion Service (Erlaubt sicheren SSH-Zugriff ohne offene Ports im Internet)
+# 8. OCI Bastion Service
 resource "oci_bastion_bastion" "grc_bastion" {
   bastion_type                 = "STANDARD"
   compartment_id               = var.compartment_ocid
   target_subnet_id             = oci_core_subnet.private_subnet.id
-  client_cidr_block_allow_list = ["0.0.0.0/0"] # Zugriff auf Bastion wird durch OCI IAM Keys geschützt
+  client_cidr_block_allow_list = ["0.0.0.0/0"]
   name                         = "grc_bastion"
-  max_session_ttl_in_seconds   = 10800 # 3 Stunden maximal pro Session
+  max_session_ttl_in_seconds   = 10800
 }
 
-# Data Sources zur Ermittlung von Regionen-Details und Images
 data "oci_identity_availability_domains" "ads" {
   compartment_id = var.compartment_ocid
 }
