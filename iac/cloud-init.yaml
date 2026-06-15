@@ -22,9 +22,9 @@ packages:
 
 write_files:
 
-  - path: /home/ubuntu/update_status.py
+  - path: /usr/local/bin/update_status.py
     permissions: '0755'
-    owner: 'ubuntu:ubuntu'
+    owner: 'root:root'
     content: |
       #!/usr/bin/env python3
       import sys
@@ -240,7 +240,7 @@ runcmd:
     log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG"; }
 
     update_status() {
-      GITHUB_TOKEN="@GITHUB_TOKEN@" GITHUB_REPO="@GITHUB_REPO@" python3 /home/ubuntu/update_status.py "$1" "$2" 2>>"$LOG" || true
+      GITHUB_TOKEN="@GITHUB_TOKEN@" GITHUB_REPO="@GITHUB_REPO@" python3 /usr/local/bin/update_status.py "$1" "$2" 2>>"$LOG" || true
     }
 
     log "=== Step 1: Enable Docker ==="
