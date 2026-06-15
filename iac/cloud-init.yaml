@@ -1,8 +1,8 @@
 #cloud-config
 # ==============================================================================
 # Cloud-Init Template: Automated Docker, Cloudflare & CISO Assistant Provisioning
-# Uses write_files: for all helper scripts (avoids YAML heredoc parsing issues)
 # NOTE: @NOTIFICATION_EMAIL@, @GITHUB_REPO@, @GITHUB_TOKEN@ replaced by Terraform
+# Systemd units created via runcmd heredocs (write_files: silently skips them)
 # ==============================================================================
 
 swap:
@@ -208,57 +208,6 @@ write_files:
       [ -d "$CISO_DIR/db/caddy" ] && cp -r "$CISO_DIR/db/caddy" "$BACKUP_DIR/"
       echo "$BACKUP_DIR"
 
-  - path: /etc/systemd/system/cloudflared.service
-    permissions: '0644'
-    owner: 'root:root'
-    content: |
-      [Unit]
-      Description=Cloudflare Tunnel Quick Tunnel
-      After=network.target
-
-      [Service]
-      Type=simple
-      User=root
-      ExecStart=/usr/local/bin/cloudflared tunnel --url https://localhost:8443 --no-tls-verify --no-autoupdate --logfile /var/log/cloudflared.log
-      Restart=always
-      RestartSec=5
-      StandardOutput=file:/var/log/cloudflared.log
-      StandardError=file:/var/log/cloudflared.log
-
-      [Install]
-      WantedBy=multi-user.target
-
-  - path: /etc/systemd/system/ciso-tunnel-url-sync.service
-    permissions: '0644'
-    owner: 'root:root'
-    content: |
-      [Unit]
-      Description=CISO Assistant Cloudflare Tunnel URL Sync
-      After=docker.service cloudflared.service
-      Requires=docker.service cloudflared.service
-
-      [Service]
-      Type=oneshot
-      User=root
-      ExecStart=/usr/local/bin/patch-ciso-compose.py
-      StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
-      StandardError=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
-
-  - path: /etc/systemd/system/ciso-tunnel-url-sync.timer
-    permissions: '0644'
-    owner: 'root:root'
-    content: |
-      [Unit]
-      Description=Check Cloudflare Tunnel URL every 5 minutes
-
-      [Timer]
-      OnBootSec=2min
-      OnUnitActiveSec=5min
-      Persistent=true
-
-      [Install]
-      WantedBy=timers.target
-
 runcmd:
   - |
     set -e
@@ -336,6 +285,25 @@ runcmd:
     ARCH=$(dpkg --print-architecture)
     curl -L --output /usr/local/bin/cloudflared "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$ARCH" 2>>"$LOG"
     chmod +x /usr/local/bin/cloudflared
+
+    cat > /etc/systemd/system/cloudflared.service << 'SERVICEEOF'
+    [Unit]
+    Description=Cloudflare Tunnel Quick Tunnel
+    After=network.target
+
+    [Service]
+    Type=simple
+    User=root
+    ExecStart=/usr/local/bin/cloudflared tunnel --url https://localhost:8443 --no-tls-verify --no-autoupdate --logfile /var/log/cloudflared.log
+    Restart=always
+    RestartSec=5
+    StandardOutput=file:/var/log/cloudflared.log
+    StandardError=file:/var/log/cloudflared.log
+
+    [Install]
+    WantedBy=multi-user.target
+    SERVICEEOF
+
     systemctl daemon-reload
     systemctl enable cloudflared
     systemctl start cloudflared
@@ -349,6 +317,35 @@ runcmd:
     mkdir -p /var/log/ciso-onboarding
     chown root:ubuntu /var/log/ciso-onboarding
     chmod 755 /var/log/ciso-onboarding
+
+    cat > /etc/systemd/system/ciso-tunnel-url-sync.service << 'SYNCSEOF'
+    [Unit]
+    Description=CISO Assistant Cloudflare Tunnel URL Sync
+    After=docker.service cloudflared.service
+    Requires=docker.service cloudflared.service
+
+    [Service]
+    Type=oneshot
+    User=root
+    ExecStart=/usr/local/bin/patch-ciso-compose.py
+    StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
+    StandardError=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
+    SYNCSEOF
+
+    cat > /etc/systemd/system/ciso-tunnel-url-sync.timer << 'TIMOREOF'
+    [Unit]
+    Description=Check Cloudflare Tunnel URL every 5 minutes
+
+    [Timer]
+    OnBootSec=2min
+    OnUnitActiveSec=5min
+    Persistent=true
+
+    [Install]
+    WantedBy=timers.target
+    TIMOREOF
+
+    systemctl daemon-reload
     systemctl enable ciso-tunnel-url-sync.timer
     systemctl start ciso-tunnel-url-sync.timer
     log "URL-Sync timer installed"
