@@ -96,63 +96,80 @@ write_files:
           main()
 
 runcmd:
-  # 1. Initialize status
-  - python3 /home/ubuntu/update_status.py INITIALIZING "System packages installed. Starting configuration..."
-  
-  # 2. Enable and start Docker service
-  - systemctl enable docker
-  - systemctl start docker
-  
-  # 3. Add default ubuntu user to docker group
-  - usermod -aG docker ubuntu
-  
-  # 4. Clone CISO Assistant Community Edition
-  - git clone https://github.com/intuitem/ciso-assistant-community.git /home/ubuntu/ciso-assistant
-  
-  # 5. Clone User's Fork Repository
-  - git clone https://github.com/${github_repo}.git /home/ubuntu/ciso-installation
-  - python3 /home/ubuntu/update_status.py CLONING "Repository cloned. Copying setup files..."
-  
-  # 6. Copy GRC Setup files into CISO Assistant db/ folder
-  - mkdir -p /home/ubuntu/ciso-assistant/db
-  - cp /home/ubuntu/ciso-installation/*.py /home/ubuntu/ciso-assistant/db/
-  - cp /home/ubuntu/ciso-installation/*.json /home/ubuntu/ciso-assistant/db/
-  - cp -r /home/ubuntu/ciso-installation/evidences /home/ubuntu/ciso-assistant/db/
-  
-  # 7. Fix file permissions
-  - chown -R ubuntu:ubuntu /home/ubuntu/ciso-assistant
-  - chown -R ubuntu:ubuntu /home/ubuntu/ciso-installation
-  
-  # 8. Start Docker Compose services
-  - python3 /home/ubuntu/update_status.py DOCKER_PULL "Docker images pulling and services starting..."
-  - cd /home/ubuntu/ciso-assistant
-  - docker compose pull
-  - docker compose up -d
-  
-  # 9. Wait for API and run GRC seeder scripts inside container
+  # All steps run as root via cloud-init. Docker is run with full path.
+  # IMPORTANT: cd does NOT persist between separate runcmd list items.
+  # Therefore all steps that need a working directory are combined in one shell block.
   - |
-    python3 /home/ubuntu/update_status.py WAITING_FOR_API "Waiting for CISO Assistant API to boot up..."
-    for i in {1..30}; do
-      if curl -k -s http://localhost:8000/api/health/ | grep -q "ok" || curl -k -s https://localhost:8443/api/health/ | grep -q "ok"; then
-        python3 /home/ubuntu/update_status.py SEEDING /var/log/cloud-init-ciso-setup.log
-        sleep 5
-        docker compose exec -T backend python db/grc_setup.py || echo "grc_setup failed"
-        docker compose exec -T backend python db/import_m365_assess.py || echo "import_m365_assess failed"
-        docker compose exec -T backend python db/grc_setup_m365_deconstruction.py || echo "grc_setup_m365_deconstruction failed"
-        docker compose exec -T backend python db/grc_setup_metrology.py || echo "grc_setup_metrology failed"
-        docker compose exec -T backend python db/grc_link_all_frameworks.py || echo "grc_link_all_frameworks failed"
-        docker compose exec -T backend python db/import_m365_findings.py || echo "import_m365_findings failed"
-        docker compose exec -T backend python db/grc_profile_setup.py --profile sme || echo "grc_profile_setup failed"
-        docker compose exec -T backend python db/populate_privacy_custom.py || echo "populate_privacy_custom failed"
-        
-        # Update final success status
-        python3 /home/ubuntu/update_status.py COMPLETED /var/log/cloud-init-ciso-setup.log
-        exit 0
+    set -e
+    CISO_DIR="/home/ubuntu/ciso-assistant"
+    INSTALL_DIR="/home/ubuntu/ciso-installation"
+    LOG="/var/log/cloud-init-ciso-setup.log"
+
+    log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG"; }
+    update_status() { python3 /home/ubuntu/update_status.py "$1" "$2" 2>>"$LOG" || true; }
+
+    log "=== Step 1: Enable Docker ==="
+    update_status INITIALIZING "Enabling Docker service..."
+    systemctl enable docker
+    systemctl start docker
+    usermod -aG docker ubuntu
+
+    log "=== Step 2: Clone repositories ==="
+    update_status CLONING "Cloning CISO Assistant and installation repo..."
+    git clone https://github.com/intuitem/ciso-assistant-community.git "$CISO_DIR" 2>>"$LOG"
+    git clone https://github.com/${github_repo}.git "$INSTALL_DIR" 2>>"$LOG"
+
+    log "=== Step 3: Copy GRC setup files ==="
+    mkdir -p "$CISO_DIR/db"
+    cp "$INSTALL_DIR"/*.py "$CISO_DIR/db/" 2>>"$LOG" || log "WARNING: no .py files found"
+    cp "$INSTALL_DIR"/*.json "$CISO_DIR/db/" 2>>"$LOG" || log "WARNING: no .json files found"
+    cp -r "$INSTALL_DIR/evidences" "$CISO_DIR/db/" 2>>"$LOG" || log "WARNING: no evidences folder"
+    chown -R ubuntu:ubuntu "$CISO_DIR" "$INSTALL_DIR"
+
+    log "=== Step 4: Start Docker Compose ==="
+    update_status DOCKER_PULL "Pulling Docker images..."
+    cd "$CISO_DIR"
+    docker compose pull 2>>"$LOG"
+    docker compose up -d 2>>"$LOG"
+    log "Docker containers started."
+
+    log "=== Step 5: Wait for CISO Assistant API to become healthy ==="
+    update_status WAITING_FOR_API "Waiting for CISO Assistant API (up to 5 minutes)..."
+    API_READY=0
+    for i in $(seq 1 30); do
+      if curl -k -s --max-time 5 https://localhost:8443/api/health/ | grep -q "ok"; then
+        log "API healthy on https://localhost:8443 after $i attempts."
+        API_READY=1
+        break
       fi
+      log "  Waiting... attempt $i/30"
       sleep 10
     done
-    python3 /home/ubuntu/update_status.py FAILED /var/log/cloud-init-ciso-setup.log
-    exit 1
+
+    if [ "$API_READY" -eq 0 ]; then
+      log "ERROR: API did not become healthy after 300s."
+      log "--- Docker ps ---"
+      docker ps 2>>"$LOG"
+      log "--- Docker compose logs (last 50) ---"
+      docker compose logs --tail=50 2>>"$LOG"
+      update_status FAILED "$LOG"
+      exit 1
+    fi
+
+    log "=== Step 6: Seed GRC database ==="
+    update_status SEEDING "Seeding GRC database (this takes several minutes)..."
+    sleep 5
+    docker compose exec -T backend python db/grc_setup.py                    2>>"$LOG" || log "grc_setup failed (non-fatal)"
+    docker compose exec -T backend python db/import_m365_assess.py           2>>"$LOG" || log "import_m365_assess failed"
+    docker compose exec -T backend python db/grc_setup_m365_deconstruction.py 2>>"$LOG" || log "grc_setup_m365 failed"
+    docker compose exec -T backend python db/grc_setup_metrology.py          2>>"$LOG" || log "grc_setup_metrology failed"
+    docker compose exec -T backend python db/grc_link_all_frameworks.py      2>>"$LOG" || log "grc_link_all_frameworks failed"
+    docker compose exec -T backend python db/import_m365_findings.py         2>>"$LOG" || log "import_m365_findings failed"
+    docker compose exec -T backend python db/grc_profile_setup.py --profile sme 2>>"$LOG" || log "grc_profile_setup failed"
+    docker compose exec -T backend python db/populate_privacy_custom.py      2>>"$LOG" || log "populate_privacy_custom failed"
+
+    log "=== Setup COMPLETED successfully ==="
+    update_status COMPLETED "$LOG"
 
 log:
   output: '/var/log/cloud-init-ciso-setup.log'
