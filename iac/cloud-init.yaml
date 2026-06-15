@@ -20,9 +20,6 @@ packages:
   - curl
   - python3
 
-# ==============================================================================
-# WRITE FILES: All helper scripts, systemd units, and config files
-# ==============================================================================
 write_files:
 
   - path: /home/ubuntu/update_status.py
@@ -184,14 +181,14 @@ write_files:
       fail() { log "FAILED: $*"; exit 1; }
       log "Checking local health: $LOCAL_URL/api/health/"
       LOCAL_RESULT=$(curl -k -s --max-time "$TIMEOUT" "$LOCAL_URL/api/health/" 2>&1) || true
-      echo "$LOCAL_RESULT" | grep -q '\"status\":\"ok\"' && log "  [+] Local health: OK" || fail "Local health: $LOCAL_RESULT"
-      LOCAL_WEB=$(curl -k -s -o /dev/null -w \"%{http_code}\" --max-time "$TIMEOUT" "$LOCAL_URL" 2>&1) || true
+      echo "$LOCAL_RESULT" | grep -q '"status":"ok"' && log "  [+] Local health: OK" || fail "Local health: $LOCAL_RESULT"
+      LOCAL_WEB=$(curl -k -s -o /dev/null -w "%{http_code}" --max-time "$TIMEOUT" "$LOCAL_URL" 2>&1) || true
       [ "$LOCAL_WEB" = "302" ] || [ "$LOCAL_WEB" = "200" ] && log "  [+] Local web: HTTP $LOCAL_WEB" || fail "Local web: HTTP $LOCAL_WEB"
       if [ -n "$PUBLIC_URL" ]; then
         log "Checking public health: $PUBLIC_URL/api/health/"
         PUBLIC_RESULT=$(curl -s --max-time "$TIMEOUT" "$PUBLIC_URL/api/health/" 2>&1) || true
-        echo "$PUBLIC_RESULT" | grep -q '\"status\":\"ok\"' && log "  [+] Public health: OK" || fail "Public health: $PUBLIC_RESULT"
-        PUBLIC_WEB=$(curl -s -o /dev/null -w \"%{http_code}\" --max-time "$TIMEOUT" "$PUBLIC_URL" 2>&1) || true
+        echo "$PUBLIC_RESULT" | grep -q '"status":"ok"' && log "  [+] Public health: OK" || fail "Public health: $PUBLIC_RESULT"
+        PUBLIC_WEB=$(curl -s -o /dev/null -w "%{http_code}" --max-time "$TIMEOUT" "$PUBLIC_URL" 2>&1) || true
         [ "$PUBLIC_WEB" = "302" ] || [ "$PUBLIC_WEB" = "200" ] && log "  [+] Public web: HTTP $PUBLIC_WEB" || fail "Public web: HTTP $PUBLIC_WEB"
       fi
       log "All health checks passed."
@@ -242,9 +239,10 @@ write_files:
 
       [Service]
       Type=oneshot
-    ExecStart=/usr/local/bin/patch-ciso-compose.py
-    StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
-    StandardError=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
+      User=root
+      ExecStart=/usr/local/bin/patch-ciso-compose.py
+      StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
+      StandardError=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
 
   - path: /etc/systemd/system/ciso-tunnel-url-sync.timer
     permissions: '0644'
@@ -261,9 +259,6 @@ write_files:
       [Install]
       WantedBy=timers.target
 
-# ==============================================================================
-# RUNCMD: Only orchestration commands, no heredocs
-# ==============================================================================
 runcmd:
   - |
     set -e
@@ -362,14 +357,12 @@ runcmd:
     if [ -n "$NOTIFICATION_EMAIL" ]; then
       update_status MAIL "Configuring mail..."
       mkdir -p /etc/ciso-onboarding
-      cat > /etc/ciso-onboarding/mail.env << MAILEOF
-      SMTP_SERVER=smtp.email.eu-frankfurt-1.oci.oraclecloud.com
-      SMTP_PORT=587
-      SMTP_AUTH_USER=
-      SMTP_AUTH_PASSWORD=
-      MAIL_FROM=@NOTIFICATION_EMAIL@
-      MAIL_TO=@NOTIFICATION_EMAIL@
-      MAILEOF
+      echo "SMTP_SERVER=smtp.email.eu-frankfurt-1.oci.oraclecloud.com" > /etc/ciso-onboarding/mail.env
+      echo "SMTP_PORT=587" >> /etc/ciso-onboarding/mail.env
+      echo "SMTP_AUTH_USER=" >> /etc/ciso-onboarding/mail.env
+      echo "SMTP_AUTH_PASSWORD=" >> /etc/ciso-onboarding/mail.env
+      echo "MAIL_FROM=@NOTIFICATION_EMAIL@" >> /etc/ciso-onboarding/mail.env
+      echo "MAIL_TO=@NOTIFICATION_EMAIL@" >> /etc/ciso-onboarding/mail.env
       chmod 600 /etc/ciso-onboarding/mail.env
       chown root:root /etc/ciso-onboarding/mail.env
     fi
