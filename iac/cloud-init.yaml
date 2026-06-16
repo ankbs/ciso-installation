@@ -332,9 +332,9 @@ runcmd:
 
     log "=== Step 8: Configure URL-Sync ==="
     update_status URL_SYNC "Deploying URL sync..."
-    mkdir -p /var/log/ciso-onboarding
-    chown root:ubuntu /var/log/ciso-onboarding
-    chmod 755 /var/log/ciso-onboarding
+    mkdir -p /var/log/ciso-onboarding /opt/ciso-setup-archive
+    chown -R ubuntu:ubuntu /var/log/ciso-onboarding /opt/ciso-setup-archive
+    chmod 775 /var/log/ciso-onboarding /opt/ciso-setup-archive
 
     cat > /etc/systemd/system/ciso-tunnel-url-sync.service << 'SYNCSEOF'
     [Unit]
@@ -346,6 +346,7 @@ runcmd:
     Type=oneshot
     User=root
     ExecStart=/usr/local/bin/patch-ciso-compose.py
+    ExecStartPost=/bin/chown -R ubuntu:ubuntu /var/log/ciso-onboarding /opt/ciso-setup-archive /home/ubuntu/ciso-assistant
     StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
     StandardError=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
     SYNCSEOF

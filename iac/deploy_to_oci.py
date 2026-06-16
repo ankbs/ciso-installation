@@ -100,6 +100,7 @@ def main():
     # 4. Check if stack already exists
     log("Checking for existing OCI Resource Manager Stack...")
     stack_id = None
+    existing_variables = {}
     try:
         # List stacks in compartment
         stacks_summary = call_oci_with_retry(
@@ -112,6 +113,12 @@ def main():
             if s.lifecycle_state == "ACTIVE":
                 stack_id = s.id
                 log(f"Found existing active Stack. Stack OCID: {stack_id}")
+                try:
+                    stack_details = call_oci_with_retry(resource_manager_client.get_stack, stack_id).data
+                    existing_variables = stack_details.variables or {}
+                except Exception as ex:
+                    log(f"Warning reading existing stack variables: {ex}")
+                    existing_variables = {}
                 break
     except Exception as e:
         log(f"Warning searching for existing stack: {e}")
@@ -181,6 +188,16 @@ def main():
     if ad_index in ad_tries:
         ad_tries.remove(ad_index)
         ad_tries.insert(0, ad_index)
+    if stack_id and existing_variables.get("instance_shape") and existing_variables.get("availability_domain_index") is not None:
+        shapes_to_try = [
+            {
+                "shape": existing_variables.get("instance_shape"),
+                "ocpus": int(existing_variables.get("instance_ocpus", "2")),
+                "memory": int(existing_variables.get("instance_memory_gbs", "8"))
+            }
+        ]
+        ad_tries = [str(existing_variables.get("availability_domain_index"))]
+        log(f"Preserving existing shape '{shapes_to_try[0]['shape']}' and AD Index '{ad_tries[0]}' to avoid replacing the running instance.")
 
     log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "deployment_errors.log")
     # Clear previous error log file

@@ -40,6 +40,10 @@ def log_audit(entry: dict):
     os.makedirs(os.path.dirname(AUDIT_LOG), exist_ok=True)
     with open(AUDIT_LOG, "a") as f:
         f.write(json.dumps(entry, default=str) + "\n")
+    try:
+        shutil.chown(AUDIT_LOG, user="ubuntu", group="ubuntu")
+    except Exception:
+        pass
 
 
 def get_tunnel_url(log_path: str = CLOUDFLARED_LOG) -> str | None:
@@ -264,6 +268,10 @@ def main():
     # Write patched file
     write_file(compose_path, patched)
     print(f"Patched: {compose_path}")
+    try:
+        shutil.chown(compose_path, user="ubuntu", group="ubuntu")
+    except Exception:
+        pass
 
     # Validate
     if validate_compose(compose_path):
