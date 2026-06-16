@@ -345,6 +345,7 @@ runcmd:
     [Service]
     Type=oneshot
     User=root
+    ExecStartPre=/bin/bash -c "su - ubuntu -c 'cd /home/ubuntu/ciso-installation && git pull' && cp /home/ubuntu/ciso-installation/scripts/send-tunnel-url-mail.sh /usr/local/bin/send-tunnel-url-mail.sh && chmod 755 /usr/local/bin/send-tunnel-url-mail.sh"
     ExecStart=/usr/local/bin/patch-ciso-compose.py
     ExecStartPost=/bin/chown -R ubuntu:ubuntu /var/log/ciso-onboarding /opt/ciso-setup-archive /home/ubuntu/ciso-assistant
     StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log

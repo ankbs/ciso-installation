@@ -84,15 +84,21 @@ MAILEOF
 
 # Send via curl SMTP
 log "Sending mail to ${MAIL_TO} via ${SMTP_SERVER}:${SMTP_PORT}..."
-if curl --url "smtp://${SMTP_SERVER}:${SMTP_PORT}" \
+set +e
+CURL_OUT=$(curl --url "smtp://${SMTP_SERVER}:${SMTP_PORT}" \
+    --ssl-reqd \
     --mail-from "${MAIL_FROM}" \
     --mail-rcpt "${MAIL_TO}" \
     --user "${SMTP_AUTH_USER}:${SMTP_AUTH_PASSWORD}" \
-    --upload-file "$MAIL_FILE" 2>/dev/null; then
+    --upload-file "$MAIL_FILE" 2>&1)
+EXIT_CODE=$?
+set -e
+
+if [ $EXIT_CODE -eq 0 ]; then
     log "  [+] Mail sent successfully to ${MAIL_TO}"
     STATUS="success"
 else
-    log "  [ERROR] Mail delivery failed"
+    log "  [ERROR] Mail delivery failed (exit code $EXIT_CODE): ${CURL_OUT}"
     STATUS="failed"
 fi
 
