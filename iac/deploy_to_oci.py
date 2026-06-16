@@ -179,6 +179,26 @@ def main():
     resource_manager_client = oci.resource_manager.ResourceManagerClient(config)
     compartment_id = env_vars.get("OCI_COMPARTMENT_OCID")
     
+    # 3.1 Check if the Approved Sender already exists in OCI
+    notification_email = env_vars.get("NOTIFICATION_EMAIL", "")
+    create_email_sender = "true"
+    if notification_email:
+        try:
+            log(f"Checking if Approved Sender already exists for email: {notification_email}...")
+            email_client = oci.email.EmailClient(config)
+            senders = call_oci_with_retry(
+                email_client.list_senders,
+                compartment_id=compartment_id,
+                email_address=notification_email
+            ).data
+            if senders:
+                log(f"Approved Sender for '{notification_email}' already exists in OCI (ID: {senders[0].id}). Skipping creation in Terraform.")
+                create_email_sender = "false"
+            else:
+                log(f"Approved Sender for '{notification_email}' does not exist yet. Will create it.")
+        except Exception as e:
+            log(f"[WARNING] Failed to query OCI Approved Senders: {e}")
+    
     # 4. Check if stack already exists
     log("Checking for existing OCI Resource Manager Stack...")
     stack_id = None
@@ -265,7 +285,8 @@ def main():
                 "github_repo": env_vars.get("GITHUB_REPO", ""),
                 "github_token": env_vars.get("GITHUB_TOKEN", ""),
                 "oci_user_ocid": env_vars.get("OCI_USER_OCID", ""),
-                "notification_email": env_vars.get("NOTIFICATION_EMAIL", "")
+                "notification_email": env_vars.get("NOTIFICATION_EMAIL", ""),
+                "create_email_sender": create_email_sender
             }
         )
         try:
@@ -291,7 +312,8 @@ def main():
                 "github_repo": env_vars.get("GITHUB_REPO", ""),
                 "github_token": env_vars.get("GITHUB_TOKEN", ""),
                 "oci_user_ocid": env_vars.get("OCI_USER_OCID", ""),
-                "notification_email": env_vars.get("NOTIFICATION_EMAIL", "")
+                "notification_email": env_vars.get("NOTIFICATION_EMAIL", ""),
+                "create_email_sender": create_email_sender
             }
         )
         try:
@@ -303,6 +325,39 @@ def main():
             print(f"[ERROR] Failed to create stack: {e}")
             sys.exit(1)
         
+    # Detect actual running VM shape/AD to avoid Terraform destroying/recreating it
+    try:
+        compute_client = oci.core.ComputeClient(config)
+        instances = call_oci_with_retry(
+            compute_client.list_instances,
+            compartment_id=compartment_id,
+            display_name="ciso-assistant-vps"
+        ).data
+        
+        # Find active instance
+        active_vm = None
+        for inst in instances:
+            if inst.lifecycle_state in ["RUNNING", "STOPPED", "PROVISIONING"]:
+                active_vm = inst
+                break
+        
+        if active_vm:
+            log(f"Detected live instance on OCI: {active_vm.id} (Shape: {active_vm.shape})")
+            existing_variables["instance_shape"] = active_vm.shape
+            if active_vm.shape_config:
+                existing_variables["instance_ocpus"] = str(active_vm.shape_config.ocpus)
+                existing_variables["instance_memory_gbs"] = str(active_vm.shape_config.memory_in_gbs)
+            
+            # Map AD name to index
+            identity_client = oci.identity.IdentityClient(config)
+            ads = call_oci_with_retry(identity_client.list_availability_domains, compartment_id).data
+            for idx, ad in enumerate(ads):
+                if ad.name == active_vm.availability_domain:
+                    existing_variables["availability_domain_index"] = str(idx)
+                    break
+    except Exception as e:
+        log(f"[WARNING] Could not query actual running instance shape: {e}")
+
     # Define shapes and AD tries based on deployment_mode
     shapes_to_try = [
         {"shape": "VM.Standard.A1.Flex", "ocpus": 2, "memory": 8}, # Always Free ARM
@@ -367,7 +422,8 @@ def main():
                     "github_repo": env_vars.get("GITHUB_REPO", ""),
                     "github_token": env_vars.get("GITHUB_TOKEN", ""),
                     "oci_user_ocid": env_vars.get("OCI_USER_OCID", ""),
-                    "notification_email": env_vars.get("NOTIFICATION_EMAIL", "")
+                    "notification_email": env_vars.get("NOTIFICATION_EMAIL", ""),
+                    "create_email_sender": create_email_sender
                 }
             )
             try:
