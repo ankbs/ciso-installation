@@ -64,14 +64,63 @@ def patch(compose_path, public_url, public_host):
     with open(compose_path, "r") as f:
         old_content = f.read()
     content = old_content
+    
+    # Update ALLOWED_HOSTS, CISO_ASSISTANT_URL, etc.
     content = re.sub(r'(- ALLOWED_HOSTS=).*', rf'\g<1>backend,localhost,{public_host}', content)
     content = re.sub(r'(- CISO_ASSISTANT_URL=).*', rf'\g<1>{public_url}', content)
     content = re.sub(r'(- CSRF_TRUSTED_ORIGINS=).*', r'\g<1>https://trycloudflare.com,https://*.trycloudflare.com', content)
     content = re.sub(r'(- PUBLIC_BACKEND_API_EXPOSED_URL=).*', rf'\g<1>{public_url}/api', content)
     content = re.sub(r'(- ORIGIN=).*', rf'\g<1>{public_url}', content)
-    content = re.sub(r'(localhost:443, )[a-z0-9-]+\.trycloudflare\.com(:443 \{)', rf'\g<1>{public_host}\g<2>', content)
-    content = re.sub(r'-\s*["\']?8443:8443["\']?', '- "8443:443"', content)
     
+    # Ensure - ORIGIN= is defined inside frontend environment block if not already present
+    if "frontend:" in content:
+        parts = content.split("frontend:")
+        frontend_part = parts[1]
+        subparts = frontend_part.split("qdrant:")
+        frontend_inner = subparts[0]
+        if "ORIGIN=" not in frontend_inner:
+            new_inner = frontend_inner.replace("environment:", f"environment:\n      - ORIGIN={public_url}/")
+            frontend_part = new_inner + "qdrant:" + "".join(subparts[1:])
+            content = parts[0] + "frontend:" + frontend_part
+
+    # Ensure Caddy service is completely replaced with verified template
+    if "caddy:" in content:
+        parts = content.split("caddy:")
+        caddy_replacement = f"""  caddy:
+    container_name: caddy
+    image: caddy:2.11.2
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+    restart: unless-stopped
+    ports:
+      - "8443:443"
+    volumes:
+      - ./db/caddy:/data/caddy
+    command: |
+      sh -c 'cat > /tmp/Caddyfile <<EOF
+      localhost:443, {public_host}:443 {{
+        tls internal
+
+        reverse_proxy /api/* backend:8000
+        reverse_proxy /* frontend:3000
+      }}
+      EOF
+      echo "----- ACTIVE CADDYFILE -----"
+      cat /tmp/Caddyfile
+      echo "----------------------------"
+      caddy run --config /tmp/Caddyfile --adapter caddyfile'
+"""
+        if "\nvolumes:" in parts[1]:
+            volumes_part = parts[1].split("\nvolumes:")
+            # Find the last volumes: section which is outside the services
+            # The compose file ends with 'volumes:\n  qdrant_data:'
+            content = parts[0] + caddy_replacement + "\nvolumes:" + "\nvolumes:".join(volumes_part[1:])
+        else:
+            content = parts[0] + caddy_replacement
+
     if old_content == content:
         print("Configuration is already up to date. No restart needed.")
         # Try running migrations even if compose layout was up to date
