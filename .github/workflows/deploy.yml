@@ -37,7 +37,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install oci cryptography
+          pip install oci cryptography pynacl
 
       - name: Write OCI Credentials and Private Key
         run: |
@@ -55,6 +55,8 @@ jobs:
           GITHUB_TOKEN=${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           NOTIFICATION_EMAIL=${{ github.event.inputs.notification_email }}
           DEPLOYMENT_MODE=${{ github.event.inputs.deployment_mode }}
+          EXISTING_SMTP_USER=${{ secrets.OCI_SMTP_USER }}
+          EXISTING_SMTP_PASSWORD=${{ secrets.OCI_SMTP_PASSWORD }}
           EOF
 
       - name: Execute OCI Stack Deployment

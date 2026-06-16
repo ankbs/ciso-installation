@@ -26,6 +26,59 @@ def load_env():
         sys.exit(1)
     return env_vars
 
+def save_github_secret(repo, token, secret_name, secret_value):
+    import urllib.request
+    import json
+    import base64
+    from nacl import encoding, public
+
+    # 1. Get public key
+    url = f"https://api.github.com/repos/{repo}/actions/secrets/public-key"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github+json"
+    })
+    try:
+        with urllib.request.urlopen(req) as response:
+            pubkey_data = json.loads(response.read().decode())
+            key_id = pubkey_data["key_id"]
+            public_key_b64 = pubkey_data["key"]
+    except Exception as e:
+        print(f"[ERROR] Failed to fetch GitHub repo public key: {e}")
+        return False
+
+    # 2. Encrypt the secret
+    try:
+        public_key = public.PublicKey(public_key_b64.encode("utf-8"), encoding.Base64Encoder)
+        sealed_box = public.SealedBox(public_key)
+        encrypted = sealed_box.encrypt(secret_value.encode("utf-8"))
+        encrypted_value = base64.b64encode(encrypted).decode("utf-8")
+    except Exception as e:
+        print(f"[ERROR] Failed to encrypt secret {secret_name}: {e}")
+        return False
+
+    # 3. Save the secret
+    put_url = f"https://api.github.com/repos/{repo}/actions/secrets/{secret_name}"
+    put_body = json.dumps({
+        "encrypted_value": encrypted_value,
+        "key_id": key_id
+    }).encode("utf-8")
+    put_req = urllib.request.Request(put_url, data=put_body, headers={
+        "Authorization": f"token {token}",
+        "Accept": "application/vnd.github+json",
+        "Content-Type": "application/json"
+    }, method="PUT")
+    try:
+        with urllib.request.urlopen(put_req) as response:
+            status = response.status if hasattr(response, 'status') else response.getcode()
+            if status in [200, 201, 204]:
+                print(f"[+] Secret {secret_name} successfully saved to GitHub.")
+                return True
+    except Exception as e:
+        print(f"[ERROR] Failed to save secret {secret_name} to GitHub: {e}")
+    return False
+
+
 def create_iac_zip():
     iac_dir = os.path.dirname(os.path.abspath(__file__))
     zip_path = os.path.join(iac_dir, "iac.zip")
@@ -63,6 +116,8 @@ def call_oci_with_retry(api_func, *args, **kwargs):
 def main():
     log("Starting OCI GRC Infrastructure Deployment...")
     env_vars = load_env()
+    existing_smtp_user = env_vars.get("EXISTING_SMTP_USER", "")
+    existing_smtp_password = env_vars.get("EXISTING_SMTP_PASSWORD", "")
     
     # 1. Setup OCI Configuration
     config = {
@@ -183,7 +238,9 @@ def main():
                 "github_repo": env_vars.get("GITHUB_REPO", ""),
                 "github_token": env_vars.get("GITHUB_TOKEN", ""),
                 "oci_user_ocid": env_vars.get("OCI_USER_OCID", ""),
-                "notification_email": env_vars.get("NOTIFICATION_EMAIL", "")
+                "notification_email": env_vars.get("NOTIFICATION_EMAIL", ""),
+                "existing_smtp_user": existing_smtp_user,
+                "existing_smtp_password": existing_smtp_password
             }
         )
         try:
@@ -209,7 +266,9 @@ def main():
                 "github_repo": env_vars.get("GITHUB_REPO", ""),
                 "github_token": env_vars.get("GITHUB_TOKEN", ""),
                 "oci_user_ocid": env_vars.get("OCI_USER_OCID", ""),
-                "notification_email": env_vars.get("NOTIFICATION_EMAIL", "")
+                "notification_email": env_vars.get("NOTIFICATION_EMAIL", ""),
+                "existing_smtp_user": existing_smtp_user,
+                "existing_smtp_password": existing_smtp_password
             }
         )
         try:
@@ -285,7 +344,9 @@ def main():
                     "github_repo": env_vars.get("GITHUB_REPO", ""),
                     "github_token": env_vars.get("GITHUB_TOKEN", ""),
                     "oci_user_ocid": env_vars.get("OCI_USER_OCID", ""),
-                    "notification_email": env_vars.get("NOTIFICATION_EMAIL", "")
+                    "notification_email": env_vars.get("NOTIFICATION_EMAIL", ""),
+                    "existing_smtp_user": existing_smtp_user,
+                    "existing_smtp_password": existing_smtp_password
                 }
             )
             try:
@@ -344,17 +405,32 @@ def main():
                     outputs_response = call_oci_with_retry(resource_manager_client.list_job_outputs, job_id)
                     outputs = outputs_response.data.items
                     
-                    print("\n==================== DEPLOYMENT OUTPUTS ====================")
+                    print("\n==================== DEPLOYMENT OUTPUTS ==================")
                     bastion_id = None
                     instance_private_ip = None
+                    new_smtp_user = None
+                    new_smtp_password = None
                     region = env_vars.get("OCI_REGION", "eu-frankfurt-1")
                     for out in outputs:
-                        print(f"{out.output_name}: {out.output_value}")
+                        val_display = "[SENSITIVE]" if out.output_name == "smtp_password" else out.output_value
+                        print(f"{out.output_name}: {val_display}")
                         if out.output_name == "bastion_id":
                             bastion_id = out.output_value
                         elif out.output_name == "instance_private_ip":
                             instance_private_ip = out.output_value
+                        elif out.output_name == "smtp_username":
+                            new_smtp_user = out.output_value
+                        elif out.output_name == "smtp_password":
+                            new_smtp_password = out.output_value
                     print("============================================================\n")
+
+                    # Save SMTP credentials to GitHub Secrets if they were newly generated
+                    github_token = env_vars.get("GITHUB_TOKEN")
+                    github_repo = env_vars.get("GITHUB_REPO")
+                    if not existing_smtp_user and new_smtp_user and new_smtp_password and github_token and github_repo:
+                        log("Saving newly generated OCI SMTP credentials securely to GitHub Secrets...")
+                        save_github_secret(github_repo, github_token, "OCI_SMTP_USER", new_smtp_user)
+                        save_github_secret(github_repo, github_token, "OCI_SMTP_PASSWORD", new_smtp_password)
                     
                     # Create a ready-to-use Bastion port-forwarding session via OCI SDK
                     if bastion_id and instance_private_ip:
