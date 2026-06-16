@@ -1,0 +1,5 @@
+{
+  "deployment_mode": "upgrade_existing",
+  "oci_region": "eu-frankfurt-1",
+  "notification_email": "michael_kirst@hotmail.com"
+}
