@@ -11,6 +11,10 @@ on:
         description: 'Email for tunnel URL notifications'
         required: false
         default: ''
+      deployment_mode:
+        description: 'Deployment Strategy / Action'
+        required: true
+        default: 'free_fallback'
 
 permissions:
   contents: write
@@ -50,6 +54,7 @@ jobs:
           GITHUB_REPO=${{ github.repository }}
           GITHUB_TOKEN=${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           NOTIFICATION_EMAIL=${{ github.event.inputs.notification_email }}
+          DEPLOYMENT_MODE=${{ github.event.inputs.deployment_mode }}
           EOF
 
       - name: Execute OCI Stack Deployment

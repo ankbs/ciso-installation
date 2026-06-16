@@ -123,6 +123,50 @@ def main():
     except Exception as e:
         log(f"Warning searching for existing stack: {e}")
 
+    # Load DEPLOYMENT_MODE from env or ciso_config.json
+    deployment_mode = env_vars.get("DEPLOYMENT_MODE", "free_fallback")
+    
+    # Try to load from ciso_config.json if present
+    config_json_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ciso_config.json")
+    if os.path.exists(config_json_path):
+        try:
+            with open(config_json_path, "r", encoding="utf-8") as f:
+                import json
+                ciso_cfg = json.load(f)
+                deployment_mode = ciso_cfg.get("deployment_mode", deployment_mode)
+                log(f"Loaded deployment mode '{deployment_mode}' from ciso_config.json")
+        except Exception as ex:
+            log(f"Warning reading ciso_config.json: {ex}")
+
+    log(f"Deployment mode selected: {deployment_mode}")
+
+    if deployment_mode == "reboot_existing":
+        log("Rebooting the existing instance...")
+        try:
+            compute_client = oci.core.ComputeClient(config)
+            instances = call_oci_with_retry(
+                compute_client.list_instances,
+                compartment_id=compartment_id,
+                display_name="ciso-assistant-vps"
+            ).data
+            target_instance = None
+            for inst in instances:
+                if inst.lifecycle_state in ["RUNNING", "STOPPED"] and inst.compartment_id == compartment_id:
+                    target_instance = inst
+                    break
+            if target_instance:
+                log(f"Found instance: {target_instance.id} in state: {target_instance.lifecycle_state}")
+                log("Sending REBOOT action to OCI Core API...")
+                call_oci_with_retry(compute_client.instance_action, target_instance.id, "REBOOT")
+                log("Reboot command sent successfully!")
+                sys.exit(0)
+            else:
+                print("[ERROR] No active 'ciso-assistant-vps' instance found in compartment.")
+                sys.exit(1)
+        except Exception as e:
+            print(f"[ERROR] Failed to reboot instance: {e}")
+            sys.exit(1)
+
     ad_index = env_vars.get("OCI_AD_INDEX", "1") # Default to AD-2
 
     if stack_id:
@@ -177,18 +221,25 @@ def main():
             print(f"[ERROR] Failed to create stack: {e}")
             sys.exit(1)
         
-    # Define fallback configurations (Shapes - Minimum 4 GB RAM required)
+    # Define shapes and AD tries based on deployment_mode
     shapes_to_try = [
         {"shape": "VM.Standard.A1.Flex", "ocpus": 2, "memory": 8}, # Always Free ARM
         {"shape": "VM.Standard.E4.Flex", "ocpus": 1, "memory": 4}  # Standard AMD Flex (Paid)
     ]
-    
-    # Define fallback Availability Domains (Location indices: 0 = AD-1, 1 = AD-2, 2 = AD-3)
     ad_tries = ["1", "2", "0"] # Prioritize AD-2, then AD-3, then AD-1
     if ad_index in ad_tries:
         ad_tries.remove(ad_index)
         ad_tries.insert(0, ad_index)
-    if stack_id and existing_variables.get("instance_shape") and existing_variables.get("availability_domain_index") is not None:
+
+    if deployment_mode == "free_only":
+        shapes_to_try = [{"shape": "VM.Standard.A1.Flex", "ocpus": 2, "memory": 8}]
+    elif deployment_mode == "paid_amd_4gb":
+        shapes_to_try = [{"shape": "VM.Standard.E4.Flex", "ocpus": 1, "memory": 4}]
+    elif deployment_mode == "paid_amd_8gb":
+        shapes_to_try = [{"shape": "VM.Standard.E4.Flex", "ocpus": 1, "memory": 8}]
+
+    # If stack exists, and we are not forcing a new install shape, preserve the existing configuration
+    if stack_id and existing_variables.get("instance_shape") and existing_variables.get("availability_domain_index") is not None and deployment_mode not in ["free_only", "free_fallback", "paid_amd_4gb", "paid_amd_8gb"]:
         shapes_to_try = [
             {
                 "shape": existing_variables.get("instance_shape"),
