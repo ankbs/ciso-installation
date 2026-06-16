@@ -45,12 +45,12 @@ if curl -s -I -m 2 -H "Authorization: Bearer Oracle" http://169.254.169.254/opc/
             
             mkdir -p "$(dirname "$MAIL_ENV")"
             cat > "$MAIL_ENV" << EOF
-SMTP_SERVER=smtp.email.${OCI_REGION}.oci.oraclecloud.com
-SMTP_PORT=587
-SMTP_AUTH_USER=${LATEST_USER}
-SMTP_AUTH_PASSWORD=${LATEST_PASS}
-MAIL_FROM=${M_FROM}
-MAIL_TO=${M_TO}
+SMTP_SERVER="smtp.email.${OCI_REGION}.oci.oraclecloud.com"
+SMTP_PORT="587"
+SMTP_AUTH_USER="${LATEST_USER}"
+SMTP_AUTH_PASSWORD="${LATEST_PASS}"
+MAIL_FROM="${M_FROM}"
+MAIL_TO="${M_TO}"
 EOF
             chmod 600 "$MAIL_ENV"
             chown root:root "$MAIL_ENV" 2>/dev/null || true
