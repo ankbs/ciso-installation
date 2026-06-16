@@ -345,8 +345,8 @@ def main():
             log(f"Detected live instance on OCI: {active_vm.id} (Shape: {active_vm.shape})")
             existing_variables["instance_shape"] = active_vm.shape
             if active_vm.shape_config:
-                existing_variables["instance_ocpus"] = str(active_vm.shape_config.ocpus)
-                existing_variables["instance_memory_gbs"] = str(active_vm.shape_config.memory_in_gbs)
+                existing_variables["instance_ocpus"] = str(int(float(active_vm.shape_config.ocpus)))
+                existing_variables["instance_memory_gbs"] = str(int(float(active_vm.shape_config.memory_in_gbs)))
             
             # Map AD name to index
             identity_client = oci.identity.IdentityClient(config)
@@ -380,8 +380,8 @@ def main():
         shapes_to_try = [
             {
                 "shape": existing_variables.get("instance_shape"),
-                "ocpus": int(existing_variables.get("instance_ocpus", "2")),
-                "memory": int(existing_variables.get("instance_memory_gbs", "8"))
+                "ocpus": int(float(existing_variables.get("instance_ocpus", "2"))),
+                "memory": int(float(existing_variables.get("instance_memory_gbs", "8")))
             }
         ]
         ad_tries = [str(existing_variables.get("availability_domain_index"))]
