@@ -339,8 +339,8 @@ runcmd:
     cat > /etc/systemd/system/ciso-tunnel-url-sync.service << 'SYNCSEOF'
     [Unit]
     Description=CISO Assistant Cloudflare Tunnel URL Sync
-    After=docker.service cloudflared.service
-    Requires=docker.service cloudflared.service
+    After=docker.service cloudflared-quick.service
+    Requires=docker.service cloudflared-quick.service
 
     [Service]
     Type=oneshot
