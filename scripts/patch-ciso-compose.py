@@ -70,6 +70,7 @@ def patch(compose_path, public_url, public_host):
     content = re.sub(r'(- PUBLIC_BACKEND_API_EXPOSED_URL=).*', rf'\g<1>{public_url}/api', content)
     content = re.sub(r'(- ORIGIN=).*', rf'\g<1>{public_url}', content)
     content = re.sub(r'(localhost:443, )[a-z0-9-]+\.trycloudflare\.com(:443 \{)', rf'\g<1>{public_host}\g<2>', content)
+    content = re.sub(r'-\s*["\']?8443:8443["\']?', '- "8443:443"', content)
     
     if old_content == content:
         print("Configuration is already up to date. No restart needed.")
