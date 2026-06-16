@@ -1,1 +1,1 @@
-{"status": "DOCKER_PULL", "log": "Pulling Docker images..."}
+{"status": "WAITING_FOR_API", "log": "Waiting for CISO Assistant API (up to 5 minutes)..."}
