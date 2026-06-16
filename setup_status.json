@@ -1,1 +1,1 @@
-{"status": "CLONING", "log": "Cloning CISO Assistant and installation repo..."}
+{"status": "DOCKER_PULL", "log": "Pulling Docker images..."}
