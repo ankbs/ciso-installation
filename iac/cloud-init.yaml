@@ -381,12 +381,12 @@ runcmd:
       OCI_REGION=$(curl -H "Authorization: Bearer Oracle" -s http://169.254.169.254/opc/v2/instance/region || true)
       if [ -z "$OCI_REGION" ]; then OCI_REGION="eu-frankfurt-1"; fi
       
-      echo "SMTP_SERVER=smtp.email.${OCI_REGION}.oci.oraclecloud.com" > /etc/ciso-onboarding/mail.env
-      echo "SMTP_PORT=587" >> /etc/ciso-onboarding/mail.env
-      echo "SMTP_AUTH_USER=${SMTP_USER}" >> /etc/ciso-onboarding/mail.env
-      echo "SMTP_AUTH_PASSWORD=${SMTP_PASSWORD}" >> /etc/ciso-onboarding/mail.env
-      echo "MAIL_FROM=$NOTIFICATION_EMAIL" >> /etc/ciso-onboarding/mail.env
-      echo "MAIL_TO=$NOTIFICATION_EMAIL" >> /etc/ciso-onboarding/mail.env
+      echo "SMTP_SERVER=\"smtp.email.${OCI_REGION}.oci.oraclecloud.com\"" > /etc/ciso-onboarding/mail.env
+      echo "SMTP_PORT=\"587\"" >> /etc/ciso-onboarding/mail.env
+      echo "SMTP_AUTH_USER=\"${SMTP_USER}\"" >> /etc/ciso-onboarding/mail.env
+      echo "SMTP_AUTH_PASSWORD=\"${SMTP_PASSWORD}\"" >> /etc/ciso-onboarding/mail.env
+      echo "MAIL_FROM=\"$NOTIFICATION_EMAIL\"" >> /etc/ciso-onboarding/mail.env
+      echo "MAIL_TO=\"$NOTIFICATION_EMAIL\"" >> /etc/ciso-onboarding/mail.env
       chmod 600 /etc/ciso-onboarding/mail.env
       chown root:root /etc/ciso-onboarding/mail.env
     fi
