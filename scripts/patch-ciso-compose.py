@@ -73,20 +73,21 @@ def patch(compose_path, public_url, public_host):
     content = re.sub(r'(- ORIGIN=).*', rf'\g<1>{public_url}', content)
     
     # Ensure - ORIGIN= is defined inside frontend environment block if not already present
-    if "frontend:" in content:
-        parts = content.split("frontend:")
+    if "\n  frontend:" in content:
+        parts = content.split("\n  frontend:")
         frontend_part = parts[1]
-        subparts = frontend_part.split("qdrant:")
-        frontend_inner = subparts[0]
-        if "ORIGIN=" not in frontend_inner:
-            new_inner = frontend_inner.replace("environment:", f"environment:\n      - ORIGIN={public_url}/")
-            frontend_part = new_inner + "qdrant:" + "".join(subparts[1:])
-            content = parts[0] + "frontend:" + frontend_part
+        if "\n  qdrant:" in frontend_part:
+            subparts = frontend_part.split("\n  qdrant:")
+            frontend_inner = subparts[0]
+            if "ORIGIN=" not in frontend_inner:
+                new_inner = frontend_inner.replace("environment:", f"environment:\n      - ORIGIN={public_url}/")
+                frontend_part = new_inner + "\n  qdrant:" + "\n  qdrant:".join(subparts[1:])
+                content = parts[0] + "\n  frontend:" + frontend_part
 
     # Ensure Caddy service is completely replaced with verified template
-    if "caddy:" in content:
-        parts = content.split("caddy:")
-        caddy_replacement = f"""  caddy:
+    if "\n  caddy:" in content:
+        parts = content.split("\n  caddy:")
+        caddy_replacement = f"""\n  caddy:
     container_name: caddy
     image: caddy:2.11.2
     depends_on:
