@@ -283,6 +283,8 @@ runcmd:
     cp -r "$INSTALL_DIR/evidences" "$CISO_DIR/db/" 2>>"$LOG" || log "WARNING: no evidences folder"
     cp "$INSTALL_DIR"/scripts/send-tunnel-url-mail.sh /usr/local/bin/send-tunnel-url-mail.sh 2>>"$LOG" || log "WARNING: no mail script found"
     chmod 755 /usr/local/bin/send-tunnel-url-mail.sh 2>>"$LOG" || true
+    cp "$INSTALL_DIR"/scripts/patch-ciso-compose.py /usr/local/bin/patch-ciso-compose.py 2>>"$LOG" || log "WARNING: no patch script found"
+    chmod 755 /usr/local/bin/patch-ciso-compose.py 2>>"$LOG" || true
     chown -R ubuntu:ubuntu "$CISO_DIR" "$INSTALL_DIR"
 
     log "=== Step 4: Start Docker Compose ==="
@@ -345,7 +347,7 @@ runcmd:
     [Service]
     Type=oneshot
     User=root
-    ExecStartPre=/bin/bash -c "su - ubuntu -c 'cd /home/ubuntu/ciso-installation && git pull' && cp /home/ubuntu/ciso-installation/scripts/send-tunnel-url-mail.sh /usr/local/bin/send-tunnel-url-mail.sh && chmod 755 /usr/local/bin/send-tunnel-url-mail.sh"
+    ExecStartPre=/bin/bash -c "su - ubuntu -c 'cd /home/ubuntu/ciso-installation && git pull' && cp /home/ubuntu/ciso-installation/scripts/send-tunnel-url-mail.sh /usr/local/bin/send-tunnel-url-mail.sh && chmod 755 /usr/local/bin/send-tunnel-url-mail.sh && cp /home/ubuntu/ciso-installation/scripts/patch-ciso-compose.py /usr/local/bin/patch-ciso-compose.py && chmod 755 /usr/local/bin/patch-ciso-compose.py"
     ExecStart=/usr/local/bin/patch-ciso-compose.py
     ExecStartPost=/bin/chown -R ubuntu:ubuntu /var/log/ciso-onboarding /opt/ciso-setup-archive /home/ubuntu/ciso-assistant
     StandardOutput=file:/var/log/ciso-onboarding/cloudflare-url-sync.log
